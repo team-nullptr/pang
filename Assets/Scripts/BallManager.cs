@@ -9,6 +9,10 @@ public class BallManager : MonoBehaviour
     public float direction = 1;
     public GameController gameController;
     public float minRelativeHeight = 11;
+
+
+    public bool useTime = true;
+    public float time = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +33,37 @@ public class BallManager : MonoBehaviour
         }
         else if(collision.gameObject.name == "floor")
         {
-            if(collision.relativeVelocity.y< minRelativeHeight)
-            {
-                rigidbody.velocity = new Vector2(rigidbody.velocity.x, minRelativeHeight);
-            }
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, minRelativeHeight);
         }
+    }
+
+    public void destroyBall()
+    {
+        GameObject dp = Resources.Load<GameObject>("Objects/BallDeathParticles");
+        print(dp);
+        dp.transform.position = gameObject.transform.position;
+        Instantiate(dp);
+        GameObject child = null;
+        switch (transform.localScale.x)
+        {
+            case 3:
+                child = Resources.Load<GameObject>("Objects/Ball2");
+                break;
+            case 1.5f:
+                child = Resources.Load<GameObject>("Objects/Ball1");
+                break;
+        }
+        if(child!= null)
+        {
+            float distance = transform.localScale.x / 2;
+            child.transform.position = new Vector2(transform.position.x + distance, transform.position.y);
+            child.GetComponent<BallManager>().direction = 1;
+            Instantiate(child);
+            child.transform.position = new Vector2(transform.position.x - distance, transform.position.y);
+            child.GetComponent<BallManager>().direction = -1;
+            Instantiate(child);
+        }
+        Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
@@ -44,7 +74,12 @@ public class BallManager : MonoBehaviour
         //{
         //    gameController.KillPlayer();
         //}
-
+        if (useTime)
+        {
+        time -= Time.deltaTime;
+            if (time < 0)
+                destroyBall();
+        }
         ////rigidbody.MovePosition(transform.position + new Vector3(speed * direction * Time.deltaTime, 0,0));
         //rigidbody.AddForce(new Vector2(speed * direction * Time.deltaTime, 0));
     }
