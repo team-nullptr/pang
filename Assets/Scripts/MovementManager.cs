@@ -24,6 +24,7 @@ public class MovementManager : MonoBehaviour
         //transform.position = transform.position + new Vector3(x, 0, 0);
         //rigidbody.AddForce(new Vector2(x, 0));
         rigidbody.MovePosition(transform.position + new Vector3(x, 0, 0));
+        rigidbody.velocity = new Vector2(x, rigidbody.velocity.y);
         //characterController.Move(new Vector3(x, 0, 0));
     }
 }
