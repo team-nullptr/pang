@@ -7,9 +7,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1788414497162275557, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788414497162275557, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788414497162275557, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788414497162275557, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5927597076129177026, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
       propertyPath: m_Name
       value: Ball2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927597076129177026, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927597076129177029, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: time
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927597076129177029, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927597076129177029, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: direction
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927597076129177029, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
+      propertyPath: minRelativeHeight
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5927597076129177030, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
       propertyPath: m_RootOrder

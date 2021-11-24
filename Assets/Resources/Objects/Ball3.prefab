@@ -8,32 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5927597076129177030}
+  - component: {fileID: 1788414497162275557}
   - component: {fileID: 5927597076129177031}
   - component: {fileID: 5927597076129177028}
   - component: {fileID: 5927597076129177029}
   - component: {fileID: 5927597076129177033}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball3
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5927597076129177030
-Transform:
+--- !u!224 &1788414497162275557
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5927597076129177026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.33, y: 3.43, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &5927597076129177031
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -119,10 +124,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 5927597076129177028}
-  speed: 5
+  speed: 3
   direction: 1
   gameController: {fileID: 0}
   minRelativeHeight: 11
+  startPos: {x: 0, y: 0}
+  useTime: 1
+  time: 10
 --- !u!58 &5927597076129177033
 CircleCollider2D:
   m_ObjectHideFlags: 0
