@@ -17,10 +17,9 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		float step = bulletSpeed * Time.deltaTime;
-        transform.position = new Vector2(transform.position.x, transform.position.y + step);
-		trail.transform.localScale = new Vector2(trail.transform.localScale.x, trail.transform.localScale.y + step / 10f);
-		trail.transform.position = new Vector2(trail.transform.position.x, (startingPoint + transform.position.y - 1f) / 2f);
+        transform.position = new Vector2(transform.position.x, transform.position.y + bulletSpeed * Time.deltaTime);
+		// trail.transform.localScale = new Vector2(trail.transform.localScale.x, transform.position.y - transform.GetComponent<Renderer>().bounds.size.y / 2f - startingPoint);
+		trail.transform.position = new Vector2(trail.transform.position.x, (startingPoint + transform.position.y) / 2f);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
