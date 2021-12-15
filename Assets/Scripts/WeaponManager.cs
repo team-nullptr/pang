@@ -6,22 +6,39 @@ public class WeaponManager : MonoBehaviour
 {
 	public KeyCode fireKey = KeyCode.Space;
 	public GameObject bulletPrefab;
+	public int bulletCount = 0;
+	public float bulletSpeed = 10;
+	public int maxBulletCount = 1;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField]
+	const float bulletOffset = 0.1f;
 
-	void Shoot() {
-		GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, 0.1f, 0f), Quaternion.identity);
+	// Start is called before the first frame update
+	void Start()
+	{
+
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(fireKey)) {
+	void Shoot()
+	{
+		if (bulletCount < maxBulletCount)
+		{
+			GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, bulletOffset, 0f), Quaternion.identity);
+			Bullet bulletComponent = bullet.GetComponent<Bullet>();
+
+			bulletComponent.shooter = this;
+			bulletComponent.bulletSpeed = bulletSpeed;
+
+			bulletCount++;
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if (Input.GetKeyDown(fireKey))
+		{
 			Shoot();
 		}
-    }
+	}
 }
