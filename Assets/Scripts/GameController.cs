@@ -4,27 +4,21 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject[] balls;
+	void Update()
+	{
+		if (GameObject.FindGameObjectsWithTag("Ball").Length == 0)
+		{
+			Win();
+		}
+	}
 
-    private void Start()
-    {
-        balls = GameObject.FindGameObjectsWithTag("Ball");
-    }
-    public void KillPlayer()
-    {
-        GameObject dp = Resources.Load<GameObject>("Objects/DeathParticles");
-        print(dp);
-        //GameObject deathParticles = GameObject.Find("DeathParticles");
-        dp.transform.position = player.transform.position;
-        Instantiate(dp);
-        //deathParticles.transform.position = player.transform.position;
-        //deathParticles.SetActive(true);
-        foreach(GameObject ball in balls)
-        {
-            //ball.GetComponent<Rigidbody2D>().simulated = false;
-        }
-        Destroy(player);
+	public void Win()
+	{
+		Debug.Log("You win!");
+	}
 
-    }
+	public void Lose()
+	{
+		Debug.Log("You lose!");
+	}
 }

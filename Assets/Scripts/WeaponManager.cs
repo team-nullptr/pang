@@ -6,12 +6,13 @@ public class WeaponManager : MonoBehaviour
 {
 	public KeyCode fireKey = KeyCode.Space;
 	public GameObject bulletPrefab;
-	public int bulletCount = 0;
 	public float bulletSpeed = 10;
-	public int maxBulletCount = 1;
+	public int maxBulletCount = 0;
 
 	[SerializeField]
 	const float bulletOffset = 0.1f;
+
+	public static float bulletCount = 0f;
 
 	// Start is called before the first frame update
 	void Start()

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1788414497162275557}
   - component: {fileID: 5927597076129177031}
   - component: {fileID: 5927597076129177028}
-  - component: {fileID: 5927597076129177029}
   - component: {fileID: 5927597076129177033}
+  - component: {fileID: 8672981558760913651}
+  - component: {fileID: 3372747971277880200}
   m_Layer: 6
   m_Name: Ball3
   m_TagString: Ball
@@ -111,26 +112,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &5927597076129177029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5927597076129177026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9772841634baa0846aa476ef9498efe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 5927597076129177028}
-  speed: 3
-  direction: 1
-  gameController: {fileID: 0}
-  minRelativeHeight: 11
-  startPos: {x: 0, y: 0}
-  useTime: 1
-  time: 10
 --- !u!58 &5927597076129177033
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -147,3 +128,29 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8672981558760913651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5927597076129177026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54df2e29d0bda304998a52867001152a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+--- !u!114 &3372747971277880200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5927597076129177026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcc003402108f74a8747a352c06b56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 5927597076129177026}

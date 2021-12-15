@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 8
   trail: {fileID: 8081599145673950683}
+  shooter: {fileID: 0}
 --- !u!61 &634199954977020786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,7 +202,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -228,7 +229,7 @@ BoxCollider2D:
     oldSize: {x: 2, y: 2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2

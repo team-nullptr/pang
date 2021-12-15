@@ -28,12 +28,12 @@ public class Bullet : MonoBehaviour
 		{
 			if (collider.tag == "Ball")
 			{
-				collider.gameObject.GetComponent<BallManager>().destroyBall();
+				collider.gameObject.GetComponent<BallManagerAlternative>().DestroyBall();
 			}
 
 			Destroy(gameObject);
 
-			shooter.bulletCount--;
+			WeaponManager.bulletCount--;
 		}
 	}
 }
