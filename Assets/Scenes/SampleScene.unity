@@ -10303,7 +10303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5927597076129177026, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
       propertyPath: m_Name
-      value: Ball3
+      value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 5927597076129177029, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
       propertyPath: speed
@@ -10481,3 +10481,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1aec5ea35f6b044db5eadadebe46dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathParticles: {fileID: 3878128322642938220, guid: 05628f14c9bb8b44d99992940f60e1aa, type: 3}

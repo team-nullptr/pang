@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+	public GameObject DeathParticles;
+
 	public void Die()
 	{
-		GameObject DeathParticles = Resources.Load<GameObject>("Objects/DeathParticles");
-		print(DeathParticles);
-		DeathParticles.transform.position = gameObject.transform.position;
-		Instantiate(DeathParticles);
+		Instantiate(DeathParticles, transform.position, Quaternion.identity);
 
 		Destroy(gameObject);
 	}

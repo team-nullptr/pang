@@ -24,16 +24,16 @@ public class Bullet : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		if (collider.tag != "Player")
+		if (collider.tag != "Player" && collider.tag != "Bullet" && collider.tag != "Ball")
 		{
-			if (collider.tag == "Ball")
-			{
-				collider.gameObject.GetComponent<BallManagerAlternative>().DestroyBall();
-			}
-
-			Destroy(gameObject);
-
-			WeaponManager.bulletCount--;
+			DestroyBullet();
 		}
+	}
+
+	public void DestroyBullet()
+	{
+		Destroy(gameObject);
+
+		WeaponManager.bulletCount--;
 	}
 }

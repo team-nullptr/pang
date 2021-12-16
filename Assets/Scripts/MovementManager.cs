@@ -4,26 +4,13 @@ using UnityEngine;
 
 public class MovementManager : MonoBehaviour
 {
-	public float speed = 20;
+	public float speed = 20f;
 	new public Rigidbody2D rigidbody;
-	private float x;
 
-	// Start is called before the first frame update
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
 	void Update()
 	{
-		x = Input.GetAxis("Horizontal");
-		//x *= Time.deltaTime;
-		x *= speed;
-		//transform.position = transform.position + new Vector3(x, 0, 0);
-		//rigidbody.AddForce(new Vector2(x, 0));
-		//rigidbody.MovePosition(transform.position + new Vector3(x, 0, 0));
-		rigidbody.velocity = new Vector2(x, rigidbody.velocity.y);
-		//characterController.Move(new Vector3(x, 0, 0));
+		float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+
+		transform.position = new Vector2(transform.position.x + x, transform.position.y);
 	}
 }

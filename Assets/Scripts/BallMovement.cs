@@ -29,4 +29,9 @@ public class BallMovement : MonoBehaviour
 			speed *= -1;
 		}
 	}
+
+	public void Jump(float jumpHeight)
+	{
+		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpHeight);
+	}
 }

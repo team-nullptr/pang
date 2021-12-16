@@ -14,12 +14,6 @@ public class WeaponManager : MonoBehaviour
 
 	public static float bulletCount = 0f;
 
-	// Start is called before the first frame update
-	void Start()
-	{
-
-	}
-
 	void Shoot()
 	{
 		if (bulletCount < maxBulletCount)
@@ -34,7 +28,6 @@ public class WeaponManager : MonoBehaviour
 		}
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		if (Input.GetKeyDown(fireKey))
