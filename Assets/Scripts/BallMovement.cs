@@ -32,6 +32,7 @@ public class BallMovement : MonoBehaviour
 
 	public void Jump(float jumpHeight)
 	{
-		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpHeight);
+		if (rigidbody2D != null)
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpHeight);
 	}
 }
