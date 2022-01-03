@@ -21,9 +21,22 @@ public class BallManager : MonoBehaviour
 	/// </summary>
 	public const float scaleFactor = 3f;
 	/// <summary>
-	/// The starting vertical velocity of the ball.
+	/// How smaller is the ball in the next layer.
 	/// </summary>
-	public const float startingHorizontalVelocity = 1f;
+	public const float scaleByLayerFactor = 0.5f;
+	/// <summary>
+	/// The vertical velocity of the ball for the highest layer.
+	/// </summary>
+	public const float defaultHorizontalVelocity = 1f;
+	/// <summary>
+	/// The jump height of the ball for the highest layer.
+	/// </summary>
+	public const float defaultJumpHeight = 6f;
+	/// <summary>
+	/// The factor by which the jump height is multiplied for the next layer.
+	/// </summary>
+	public const float jumpHeightFactor = 0.5f;
+
 	private GameController gameController;
 
 	void Start()
@@ -31,10 +44,10 @@ public class BallManager : MonoBehaviour
 		gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
 		// Scale according to the layer
-		transform.localScale = scaleFactor * new Vector3(1f, 1f, 1f) / Mathf.Pow(2, layer);
+		transform.localScale = scaleFactor * new Vector3(1f, 1f, 1f) * Mathf.Pow(scaleByLayerFactor, layer);
 
 		// Set the horizontal velocity
-		GetComponent<BallMovement>().Jump(startingHorizontalVelocity);
+		GetComponent<BallMovement>().jumpAltitude = defaultJumpHeight * Mathf.Pow(jumpHeightFactor, layer);
 	}
 
 	public void DestroyBall()
