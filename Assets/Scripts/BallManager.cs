@@ -81,6 +81,7 @@ public class BallManager : MonoBehaviour
 		}
 	}
 
+	// When a ball hits the bullet, destroy the ball and the bullet
 	void OnTriggerEnter2D(Collider2D collider)
 	{
 		switch (collider.tag)
@@ -95,7 +96,7 @@ public class BallManager : MonoBehaviour
 			case "BulletTrail":
 				DestroyBall();
 
-				collider.gameObject.transform.parent.GetComponent<Bullet>().DestroyBullet();
+				collider.gameObject.transform.parent.parent.GetComponent<Bullet>().DestroyBullet();
 
 				break;
 		}

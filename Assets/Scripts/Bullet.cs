@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+	/// <summary>
+	/// The vertical velocity of a bullet.
+	/// </summary>
 	public float bulletSpeed = 10f;
-	public GameObject trail;
+	public SpriteRenderer trailSpriteRenderer;
+	public BoxCollider2D trailBoxCollider2D;
 	public WeaponManager shooter;
+
 	private float startingPoint;
 
 	// Start is called before the first frame update
@@ -18,8 +23,12 @@ public class Bullet : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		// Update bullet head position
 		transform.position = new Vector2(transform.position.x, transform.position.y + bulletSpeed * Time.deltaTime);
-		trail.transform.localScale = new Vector2(trail.transform.localScale.x, (transform.position.y - startingPoint) / 20f);
+
+		// Make trail longer
+		trailSpriteRenderer.size = new Vector2(trailSpriteRenderer.size.x, transform.position.y - startingPoint);
+		trailBoxCollider2D.size = new Vector2(trailBoxCollider2D.size.x, transform.position.y - startingPoint);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
