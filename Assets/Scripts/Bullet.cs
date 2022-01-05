@@ -29,6 +29,9 @@ public class Bullet : MonoBehaviour
 		// Make trail longer
 		trailSpriteRenderer.size = new Vector2(trailSpriteRenderer.size.x, transform.position.y - startingPoint);
 		trailBoxCollider2D.size = new Vector2(trailBoxCollider2D.size.x, transform.position.y - startingPoint);
+
+		// Fix box collider positioning
+		trailBoxCollider2D.offset = new Vector2(trailBoxCollider2D.offset.x, -(trailBoxCollider2D.gameObject.transform.position.y - startingPoint) / 2 - 0.5f);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
