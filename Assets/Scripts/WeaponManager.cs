@@ -9,10 +9,12 @@ public class WeaponManager : MonoBehaviour
 	public float bulletSpeed = 10;
 	public int maxBulletCount = 0;
 
+	public AudioSource shotSound;
+
 	[SerializeField]
 	const float bulletOffset = 0.1f;
 
-	public static float bulletCount = 0f;
+	public static int bulletCount = 0;
 
 	void Shoot()
 	{
@@ -25,6 +27,9 @@ public class WeaponManager : MonoBehaviour
 			bulletComponent.bulletSpeed = bulletSpeed;
 
 			bulletCount++;
+
+			if (shotSound != null)
+				shotSound.Play();
 		}
 	}
 

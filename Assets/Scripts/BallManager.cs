@@ -36,6 +36,15 @@ public class BallManager : MonoBehaviour
 	/// The factor by which the jump height is multiplied for the next layer.
 	/// </summary>
 	public const float jumpHeightFactor = 0.5f;
+	public AudioSource breakSound;
+	/// <summary>
+	/// The default pitch of the sound of breaking the ball.
+	/// </summary>
+	public const float defaultSoundPitch = 0.5f;
+	/// <summary>
+	/// The factor by which the pitch of the sound of breaking the ball is multiplied for the next layer.
+	/// </summary>
+	public float breakSoundPitchFactor = 2f;
 
 	private GameController gameController;
 
@@ -50,7 +59,7 @@ public class BallManager : MonoBehaviour
 		GetComponent<BallMovement>().jumpAltitude = defaultJumpHeight * Mathf.Pow(jumpHeightFactor, layer);
 	}
 
-	public void DestroyBall()
+	public void BreakBall()
 	{
 		if (layer < maxLayer)
 		{
@@ -66,6 +75,13 @@ public class BallManager : MonoBehaviour
 			ball2.GetComponent<BallMovement>().speed *= -1;
 		}
 
+		if (breakSound != null)
+		{
+			breakSound.pitch = defaultSoundPitch * Mathf.Pow(breakSoundPitchFactor, layer);
+
+			breakSound.Play();
+		}
+
 		Destroy(gameObject);
 	}
 
@@ -75,7 +91,7 @@ public class BallManager : MonoBehaviour
 		{
 			collision.collider.GetComponent<PlayerManager>().Die();
 
-			DestroyBall();
+			BreakBall();
 
 			gameController.Lose();
 		}
@@ -87,14 +103,14 @@ public class BallManager : MonoBehaviour
 		switch (collider.tag)
 		{
 			case "Bullet":
-				DestroyBall();
+				BreakBall();
 
 				collider.gameObject.GetComponent<Bullet>().DestroyBullet();
 
 				break;
 
 			case "BulletTrail":
-				DestroyBall();
+				BreakBall();
 
 				collider.gameObject.transform.parent.parent.GetComponent<Bullet>().DestroyBullet();
 

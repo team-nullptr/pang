@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
 	public SpriteRenderer trailSpriteRenderer;
 	public BoxCollider2D trailBoxCollider2D;
 	public WeaponManager shooter;
+	public AudioSource bulletBreakingSound;
 
 	private float startingPoint;
 
@@ -18,6 +19,14 @@ public class Bullet : MonoBehaviour
 	void Start()
 	{
 		startingPoint = transform.position.y;
+
+		// Get the bullet breaking sound
+		GameObject bulletBreakingSoundObject = GameObject.Find("BulletBreakingSpeaker");
+
+		if (bulletBreakingSoundObject != null)
+		{
+			bulletBreakingSound = bulletBreakingSoundObject.GetComponent<AudioSource>();
+		}
 	}
 
 	// Update is called once per frame
@@ -38,6 +47,11 @@ public class Bullet : MonoBehaviour
 	{
 		if (collider.tag != "Player" && collider.tag != "Bullet" && collider.tag != "Ball")
 		{
+			if (bulletBreakingSound != null)
+			{
+				bulletBreakingSound.Play();
+			}
+
 			DestroyBullet();
 		}
 	}

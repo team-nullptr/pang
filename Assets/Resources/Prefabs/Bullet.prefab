@@ -158,6 +158,7 @@ MonoBehaviour:
   trailSpriteRenderer: {fileID: 6923365163138965308}
   trailBoxCollider2D: {fileID: 1167326613077568866}
   shooter: {fileID: 0}
+  bulletBreakingSound: {fileID: 0}
 --- !u!61 &634199954977020786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210,7 +211,7 @@ Transform:
   m_GameObject: {fileID: 8081599145673950683}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.10000001, z: 1}
   m_Children:
   - {fileID: 7309008543521369993}
   m_Father: {fileID: 8081599144398035010}
@@ -261,7 +262,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2, y: 0.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
