@@ -7,12 +7,12 @@ public class BallMovement : MonoBehaviour
 	/// <summary>
 	/// Horizontal speed of the ball.
 	/// </summary>
-	public float speed = 3f;
+	public float speed;
 	/// <summary>
 	/// Jump height of the ball.
 	/// </summary>
 	public float jumpAltitude;
-	
+
 	public const float groundLevel = -2.5f;
 
 	new Rigidbody2D rigidbody2D;
@@ -52,7 +52,8 @@ public class BallMovement : MonoBehaviour
 
 		// If the ball hits the ceiling, bounce the ball
 
-		if (directionalVector.y > 0.5) {
+		if (directionalVector.y > 0.5)
+		{
 			rigidbody2D.velocity = new Vector2(
 				rigidbody2D.velocity.x,
 				collision.relativeVelocity.y);

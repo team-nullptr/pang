@@ -27,7 +27,15 @@ public class BallManager : MonoBehaviour
 	/// <summary>
 	/// The vertical velocity of the ball for the highest layer.
 	/// </summary>
-	public const float defaultHorizontalVelocity = 1f;
+	public const float defaultVerticalVelocity = 1f;
+	/// <summary>
+	/// The horizontal velocity of the ball for the highest layer.
+	/// </summary>
+	public const float defaultSpeed = 3f;
+	/// <summary>
+	/// The factor by which the speed is multiplied for the next layer.
+	/// </summary>
+	public const float speedFactor = 0.75f;
 	/// <summary>
 	/// The jump height of the ball for the highest layer.
 	/// </summary>
@@ -36,6 +44,10 @@ public class BallManager : MonoBehaviour
 	/// The factor by which the jump height is multiplied for the next layer.
 	/// </summary>
 	public const float jumpHeightFactor = 0.5f;
+	/// <summary>
+	/// How high should the ball jump after it spawns.
+	/// </summary>
+	public const float spawnJump = 1f;
 	public AudioSource breakSound;
 	/// <summary>
 	/// The default pitch of the sound of breaking the ball.
@@ -56,11 +68,15 @@ public class BallManager : MonoBehaviour
 		transform.localScale = scaleFactor * new Vector3(1f, 1f, 1f) * Mathf.Pow(scaleByLayerFactor, layer);
 
 		// Set the horizontal velocity
-		GetComponent<BallMovement>().jumpAltitude = defaultJumpHeight * Mathf.Pow(jumpHeightFactor, layer);
+		BallMovement ballMovement = GetComponent<BallMovement>();
+
+		ballMovement.speed *= Mathf.Pow(speedFactor, layer);
+		ballMovement.jumpAltitude = defaultJumpHeight * Mathf.Pow(jumpHeightFactor, layer);
 	}
 
 	public void BreakBall()
 	{
+		// If the ball isn't the smallest size, create two new balls
 		if (layer < maxLayer)
 		{
 			GameObject ball1 = Instantiate(ballPrefab, transform.position, Quaternion.identity);
@@ -69,10 +85,11 @@ public class BallManager : MonoBehaviour
 			ball1.GetComponent<BallManager>().layer = layer + 1;
 			ball2.GetComponent<BallManager>().layer = layer + 1;
 
-			ball1.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 1f);
-			ball2.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 1f);
+			ball1.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, spawnJump);
+			ball2.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, spawnJump);
 
-			ball2.GetComponent<BallMovement>().speed *= -1;
+			ball1.GetComponent<BallMovement>().speed = defaultSpeed;
+			ball2.GetComponent<BallMovement>().speed = -defaultSpeed;
 		}
 
 		if (breakSound != null)
