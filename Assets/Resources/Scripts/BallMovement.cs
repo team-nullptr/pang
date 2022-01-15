@@ -55,7 +55,7 @@ public class BallMovement : MonoBehaviour
 		float direction = directionalVector.x;
 
 		// If the ball hits the wall, reverse the ball's direction
-		if (direction > 0.25 && speed > 0f || direction < -0.25 && speed < 0f)
+		if (direction > 0.25f && speed > 0f || direction < -0.25f && speed < 0f)
 		{
 			speed = -speed;
 		}
