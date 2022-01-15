@@ -58,7 +58,8 @@ public class BallManager : MonoBehaviour
 	/// </summary>
 	public float breakSoundPitchFactor = 2f;
 
-	private GameController gameController;
+	GameController gameController;
+	BallMovement ballMovement;
 
 	void Start()
 	{
@@ -68,7 +69,7 @@ public class BallManager : MonoBehaviour
 		transform.localScale = scaleFactor * new Vector3(1f, 1f, 1f) * Mathf.Pow(scaleByLayerFactor, layer);
 
 		// Set the horizontal velocity
-		BallMovement ballMovement = GetComponent<BallMovement>();
+		ballMovement = GetComponent<BallMovement>();
 
 		ballMovement.speed *= Mathf.Pow(speedFactor, layer);
 		ballMovement.jumpAltitude = defaultJumpHeight * Mathf.Pow(jumpHeightFactor, layer);
@@ -94,24 +95,33 @@ public class BallManager : MonoBehaviour
 			GameObject ball1 = Instantiate(ballPrefab, transform.position, Quaternion.identity);
 			GameObject ball2 = Instantiate(ballPrefab, transform.position, Quaternion.identity);
 
-			ball1.GetComponent<BallManager>().layer = layer + 1;
-			ball2.GetComponent<BallManager>().layer = layer + 1;
+			BallManager ballManager1 = ball1.GetComponent<BallManager>();
+			BallManager ballManager2 = ball2.GetComponent<BallManager>();
 
-			ball1.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, spawnJump);
-			ball2.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, spawnJump);
+			BallMovement ballMovement1 = ball1.GetComponent<BallMovement>();
+			BallMovement ballMovement2 = ball2.GetComponent<BallMovement>();
 
-			ball1.GetComponent<BallMovement>().speed = defaultSpeed;
-			ball2.GetComponent<BallMovement>().speed = -defaultSpeed;
+			ballManager1.layer = layer + 1;
+			ballManager2.layer = layer + 1;
+
+			ballMovement1.speed = defaultSpeed;
+			ballMovement2.speed = -defaultSpeed;
+
+			ballMovement1.Jump(spawnJump);
+			ballMovement2.Jump(spawnJump);
 		}
 
 		Destroy(gameObject);
 	}
 
+	public BallMovement GetBallMovement()
+	{
+		return ballMovement;
+	}
+
 	// When a ball hits the bullet, destroy the ball and the bullet
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		Debug.Log("Ball hit " + collider.gameObject.name);
-
 		switch (collider.tag)
 		{
 			case "Bullet":
