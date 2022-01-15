@@ -16,10 +16,12 @@ public class BallMovement : MonoBehaviour
 	public const float groundLevel = -2.5f;
 
 	new Rigidbody2D rigidbody2D;
+	new CircleCollider2D collider;
 
 	void Start()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
+		collider = GetComponent<CircleCollider2D>();
 	}
 
 	void FixedUpdate()
@@ -27,16 +29,35 @@ public class BallMovement : MonoBehaviour
 		rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	void Update()
+	{
+		// If the ball goes out of the left screen border, it bounces back.
+		if (Camera.main.WorldToScreenPoint(transform.position - collider.bounds.extents).x < 0f)
+		{
+			speed = -speed;
+
+			transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x + collider.bounds.extents.x, transform.position.y, transform.position.z);
+		}
+
+		// If the ball goes out of the right screen border, it bounces back.
+		if (Camera.main.WorldToScreenPoint(transform.position + collider.bounds.extents).x > Screen.width)
+		{
+			speed = -speed;
+
+			transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - collider.bounds.extents.x, transform.position.y, transform.position.z);
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D collision)
 	{
 		// Calculate hit direction
 		Vector2 directionalVector = (collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y)).normalized;
 		float direction = directionalVector.x;
 
-		// Reverse the ball's direction
-		if (Mathf.Abs(direction) > 0.25)
+		// If the ball hits the wall, reverse the ball's direction
+		if (direction > 0.25 && speed > 0f || direction < -0.25 && speed < 0f)
 		{
-			speed *= -1;
+			speed = -speed;
 		}
 
 		// If the ball hits the ground, bounce the ball so it achieves a constant height
