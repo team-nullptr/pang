@@ -48,7 +48,7 @@ public class BallManager : MonoBehaviour
 	/// How high should the ball jump after it spawns.
 	/// </summary>
 	public const float spawnJump = 1f;
-	public AudioSource breakSound;
+	public AudioSource ballShotSound;
 	/// <summary>
 	/// The default pitch of the sound of breaking the ball.
 	/// </summary>
@@ -74,6 +74,18 @@ public class BallManager : MonoBehaviour
 		ballMovement.jumpAltitude = defaultJumpHeight * Mathf.Pow(jumpHeightFactor, layer);
 	}
 
+	public void GetShot()
+	{
+		if (ballShotSound != null)
+		{
+			ballShotSound.pitch = defaultSoundPitch * Mathf.Pow(breakSoundPitchFactor, layer);
+
+			ballShotSound.Play();
+		}
+
+		BreakBall();
+	}
+
 	public void BreakBall()
 	{
 		// If the ball isn't the smallest size, create two new balls
@@ -92,45 +104,36 @@ public class BallManager : MonoBehaviour
 			ball2.GetComponent<BallMovement>().speed = -defaultSpeed;
 		}
 
-		if (breakSound != null)
-		{
-			breakSound.pitch = defaultSoundPitch * Mathf.Pow(breakSoundPitchFactor, layer);
-
-			breakSound.Play();
-		}
-
 		Destroy(gameObject);
-	}
-
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.collider.tag == "Player")
-		{
-			collision.collider.GetComponent<PlayerManager>().Die();
-
-			BreakBall();
-
-			gameController.Lose();
-		}
 	}
 
 	// When a ball hits the bullet, destroy the ball and the bullet
 	void OnTriggerEnter2D(Collider2D collider)
 	{
+		Debug.Log("Ball hit " + collider.gameObject.name);
+
 		switch (collider.tag)
 		{
 			case "Bullet":
-				BreakBall();
+				GetShot();
 
 				collider.gameObject.GetComponent<Bullet>().DestroyBullet();
 
 				break;
 
 			case "BulletTrail":
-				BreakBall();
+				GetShot();
 
 				collider.gameObject.transform.parent.parent.GetComponent<Bullet>().DestroyBullet();
 
+				break;
+
+			case "Player":
+				// Player hitbox hit
+				if (collider.transform.parent.GetComponent<PlayerManager>().GetHurt())
+				{
+					BreakBall();
+				}
 				break;
 		}
 	}

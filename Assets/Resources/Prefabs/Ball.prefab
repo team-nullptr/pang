@@ -121,7 +121,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 5927597076129177026}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 7f439cbdd6fc3f442a13a0ed22d356d7, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  jumpAltitude: 0
 --- !u!114 &3372747971277880200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +155,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 5927597076129177026}
+  ballShotSound: {fileID: 0}
+  breakSoundPitchFactor: 2
