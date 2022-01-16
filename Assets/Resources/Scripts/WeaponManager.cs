@@ -11,8 +11,7 @@ public class WeaponManager : MonoBehaviour
 
 	public AudioSource shotSound;
 
-	[SerializeField]
-	const float bulletOffset = 0.1f;
+	public const float bulletOffset = 0.05f;
 
 	public static int bulletCount = 0;
 

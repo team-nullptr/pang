@@ -13,11 +13,13 @@ public class Bullet : MonoBehaviour
 	public WeaponManager shooter;
 	public AudioSource bulletBreakingSound;
 
-	private float startingPoint;
+	float startingPoint;
+	new BoxCollider2D collider;
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		// Save the starting point of the bullet
 		startingPoint = transform.position.y;
 
 		// Get the bullet breaking sound
@@ -27,6 +29,9 @@ public class Bullet : MonoBehaviour
 		{
 			bulletBreakingSound = bulletBreakingSoundObject.GetComponent<AudioSource>();
 		}
+
+		// Get the bullet collider
+		collider = GetComponent<BoxCollider2D>();
 	}
 
 	// Update is called once per frame
@@ -41,19 +46,30 @@ public class Bullet : MonoBehaviour
 
 		// Fix box collider positioning
 		trailBoxCollider2D.offset = new Vector2(trailBoxCollider2D.offset.x, -(trailBoxCollider2D.gameObject.transform.position.y - startingPoint) / 2 - 0.5f);
+
+		// Destroy the bullet when it goes off screen
+		if (transform.position.y + collider.bounds.extents.y > Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y)
+		{
+			BreakBullet();
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
 		if (collider.tag != "Player" && collider.tag != "Bullet" && collider.tag != "Ball")
 		{
-			if (bulletBreakingSound != null)
-			{
-				bulletBreakingSound.Play();
-			}
-
-			DestroyBullet();
+			BreakBullet();
 		}
+	}
+
+	public void BreakBullet()
+	{
+		if (bulletBreakingSound != null)
+		{
+			bulletBreakingSound.Play();
+		}
+
+		DestroyBullet();
 	}
 
 	public void DestroyBullet()
