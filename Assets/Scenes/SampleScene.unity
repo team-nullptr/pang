@@ -7970,6 +7970,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1716708135}
     - target: {fileID: 323071565309939555, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8669124876937288955}
+    - target: {fileID: 323071565309939555, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 612719738}
@@ -8038,6 +8042,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8204572457067509595, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6113a5a71757ecd4a89ccc329b42300f, type: 3}
     - target: {fileID: 8669124877267977177, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -8096,3 +8104,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
+--- !u!82 &8669124876937288955 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8204572457067509595, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
+  m_PrefabInstance: {fileID: 8669124876937288954}
+  m_PrefabAsset: {fileID: 0}

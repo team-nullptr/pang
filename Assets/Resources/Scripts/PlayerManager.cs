@@ -19,8 +19,9 @@ public class PlayerManager : MonoBehaviour
 	/// How long should the player be invulnerable after getting hit.
 	/// </summary>
 	public const float invulnerabilityTime = 1.5f;
+	public AudioSource hitSound;
 
-	private float invulnerabilityTimer;
+	float invulnerabilityTimer;
 
 	void Start()
 	{
@@ -51,6 +52,11 @@ public class PlayerManager : MonoBehaviour
 		if (hpText != null)
 		{
 			hpText.text = hp.ToString();
+		}
+
+		if (hitSound != null)
+		{
+			hitSound.Play();
 		}
 
 		invulnerabilityTimer = invulnerabilityTime;
