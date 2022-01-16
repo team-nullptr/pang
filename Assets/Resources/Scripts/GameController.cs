@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
+		Settings.Update();
+
 		Pause();
 	}
 

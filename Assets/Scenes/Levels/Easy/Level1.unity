@@ -384,7 +384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788414497162275557, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.76
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1788414497162275557, guid: c080b8b1cfa2cd942a7e2daa12635fad, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8393,7 +8393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8669124877267977182, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: timer
-      value: 180
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8669124877267977182, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: timerText
