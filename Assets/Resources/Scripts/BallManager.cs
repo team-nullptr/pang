@@ -56,7 +56,7 @@ public class BallManager : MonoBehaviour
 	/// <summary>
 	/// The factor by which the pitch of the sound of breaking the ball is multiplied for the next layer.
 	/// </summary>
-	public float breakSoundPitchFactor = 2f;
+	public float breakSoundPitchFactor = 1f;
 
 	GameController gameController;
 	BallMovement ballMovement;

@@ -6,20 +6,56 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-	//
-	public float timer = -1f;
+	/// <summary>
+	/// The time after which the game ends and the player loses. Set to Mathf.Infinity to disable this.
+	/// </summary>
+	public float timer = Mathf.Infinity;
+	public float countdown = 3f;
 	public Text timerText = null;
+	public Text CountdownText = null;
 
 	bool gameOver = false;
 
+	public void Pause()
+	{
+		Time.timeScale = 0;
+	}
+
+	public void Resume()
+	{
+		Time.timeScale = 1;
+	}
+
+	void Start()
+	{
+		Pause();
+	}
+
 	void Update()
 	{
+		if (countdown > 0)
+		{
+			if (CountdownText != null)
+				CountdownText.text = Mathf.Ceil(countdown).ToString();
+
+			countdown -= Time.unscaledDeltaTime;
+
+			return;
+		}
+		else
+		{
+			Resume();
+
+			if (CountdownText != null)
+				CountdownText.gameObject.SetActive(false);
+		}
+
 		if (GameObject.FindGameObjectsWithTag("Ball").Length == 0)
 		{
 			Win();
 		}
 
-		if (timer != -1f)
+		if (timer != Mathf.Infinity)
 		{
 			timer -= Time.deltaTime;
 

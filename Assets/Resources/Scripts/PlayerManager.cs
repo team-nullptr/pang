@@ -42,7 +42,9 @@ public class PlayerManager : MonoBehaviour
 	/// <summary>
 	/// Called when the player gets hit. If the player is invulnerable, this method does nothing. If the player is not invulnerable, the player's health is decreased and the player is invulnerable for a short time.
 	/// </summary>
-	/// <returns>True if the player loses health, false if he is invincible.</returns>
+	/// <returns>
+	/// True if the player loses health, false if he is invincible.
+	///</returns>
 	public bool GetHurt()
 	{
 		if (invulnerabilityTimer > 0)

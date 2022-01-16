@@ -41,11 +41,11 @@ public class Bullet : MonoBehaviour
 		transform.position = new Vector2(transform.position.x, transform.position.y + bulletSpeed * Time.deltaTime);
 
 		// Make trail longer
-		trailSpriteRenderer.size = new Vector2(trailSpriteRenderer.size.x, transform.position.y - startingPoint);
-		trailBoxCollider2D.size = new Vector2(trailBoxCollider2D.size.x, transform.position.y - startingPoint);
+		trailSpriteRenderer.size = new Vector2(trailSpriteRenderer.size.x, (transform.position.y - startingPoint) * 10f / transform.localScale.y);
+		trailBoxCollider2D.size = new Vector2(trailBoxCollider2D.size.x, (transform.position.y - startingPoint) * 10f / transform.localScale.y);
 
 		// Fix box collider positioning
-		trailBoxCollider2D.offset = new Vector2(trailBoxCollider2D.offset.x, -(trailBoxCollider2D.gameObject.transform.position.y - startingPoint) / 2 - 0.5f);
+		trailBoxCollider2D.offset = new Vector2(trailBoxCollider2D.offset.x, -trailBoxCollider2D.size.y / 2f);
 
 		// Destroy the bullet when it goes off screen
 		if (transform.position.y + collider.bounds.extents.y > Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y)

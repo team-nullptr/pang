@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62be1f3173f531d4ba76f67b18c98ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  rigidbody: {fileID: 323071565309939566}
+  speed: 5
 --- !u!50 &323071565309939566
 Rigidbody2D:
   serializedVersion: 4
@@ -172,6 +171,7 @@ MonoBehaviour:
   deathParticles: {fileID: 3878128322642938220, guid: 05628f14c9bb8b44d99992940f60e1aa, type: 3}
   hp: 3
   hpText: {fileID: 0}
+  hitSound: {fileID: 0}
 --- !u!1 &2607996490430778620
 GameObject:
   m_ObjectHideFlags: 0
