@@ -6,30 +6,53 @@ public class WeaponManager : MonoBehaviour
 {
 	public KeyCode fireKey = KeyCode.Space;
 	public GameObject bulletPrefab;
-	public float bulletSpeed = 10;
+	/// <summary>
+	/// The maximum number of bullets that can be on the screen at once.
+	/// </summary>
 	public int maxBulletCount = 0;
 
 	public AudioSource shotSound;
 
-	public const float bulletOffset = 0f;
+	/// <summary>
+	/// How high above the ground should the bullet spawn.
+	/// </summary>
+	public const float bulletOffset = 0.1f;
+	/// <summary>
+	/// How many bullets are currently on the screen.
+	/// </summary>
+	public int bulletCount = 0;
 
-	public static int bulletCount = 0;
+	new CapsuleCollider2D collider;
+
+	void Start()
+	{
+		collider = GetComponent<CapsuleCollider2D>();
+	}
 
 	void Shoot()
 	{
-		if (bulletCount < maxBulletCount)
-		{
-			GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, bulletOffset, 0f), Quaternion.identity);
-			Bullet bulletComponent = bullet.GetComponent<Bullet>();
+		// If the bullet count is at the maximum, do nothing.
+		if (bulletCount >= maxBulletCount)
+			return;
 
-			bulletComponent.shooter = this;
-			bulletComponent.bulletSpeed = bulletSpeed;
+		// Create a new bullet.
+		GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, bulletOffset - collider.bounds.extents.y, 0f), Quaternion.identity);
 
-			bulletCount++;
+		// Get the neccessary components.
+		Bullet bulletComponent = bullet.GetComponent<Bullet>();
+		BoxCollider2D bulletCollider = bullet.GetComponent<BoxCollider2D>();
 
-			if (shotSound != null)
-				shotSound.Play();
-		}
+		// Set the bullet's shooter.
+		bulletComponent.shooter = this;
+		// Put the bullet a bit above the ground so it doesn't collide with it and automatically destroy it.
+		bullet.transform.position += new Vector3(0f, bulletCollider.bounds.extents.y, 0f);
+
+		// Add one to the bullet count.
+		bulletCount++;
+
+		// Play the shot sound.
+		if (shotSound != null)
+			shotSound.Play();
 	}
 
 	void Update()

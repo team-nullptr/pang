@@ -47,7 +47,7 @@ public class BallManager : MonoBehaviour
 	/// <summary>
 	/// How high should the ball jump after it spawns.
 	/// </summary>
-	public const float spawnJump = 1f;
+	public const float spawnJump = 5f;
 	public AudioSource ballShotSound;
 	/// <summary>
 	/// The default pitch of the sound of breaking the ball.

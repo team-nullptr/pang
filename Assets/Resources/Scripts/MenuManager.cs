@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// TODO: Set default values of the volume sliders to the actual values from PlayerPrefs
-
 public class MenuManager : MonoBehaviour
 {
 	/// <summary>
@@ -15,15 +13,26 @@ public class MenuManager : MonoBehaviour
 	/// <summary>
 	/// Easy levels.
 	/// </summary>
-	public Scene[] easyLevels;
+	public string[] easyLevels;
 	/// <summary>
 	/// Medium levels.
 	/// </summary>
-	public Scene[] mediumLevels;
+	public string[] mediumLevels;
 	/// <summary>
 	/// Hard levels.
 	/// </summary>
-	public Scene[] hardLevels;
+	public string[] hardLevels;
+
+	public Slider musicVolumeSlider;
+	public Slider sfxVolumeSlider;
+
+	void Start()
+	{
+		// Set the music volume slider to the actual value from PlayerPrefs
+		musicVolumeSlider.value = Settings.MusicVolume;
+		// Set the sfx volume slider to the actual value from PlayerPrefs
+		sfxVolumeSlider.value = Settings.SfxVolume;
+	}
 
 	public void EnableMenu(GameObject menu)
 	{
@@ -53,6 +62,11 @@ public class MenuManager : MonoBehaviour
 	public void LoadLevel(Scene scene)
 	{
 		SceneManager.LoadScene(scene.name);
+	}
+
+	public void LoadRandomLevel(string[] scenes)
+	{
+		SceneManager.LoadScene(scenes[Random.Range(0, scenes.Length)]);
 	}
 
 	public void LoadRandomLevel(Scene[] scenes)

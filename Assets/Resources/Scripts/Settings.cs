@@ -47,7 +47,9 @@ public class Settings
 		GameObject musicSpeaker = GameObject.Find("MusicSpeaker");
 
 		if (musicSpeaker != null)
+		{
 			musicSpeaker.GetComponent<AudioSource>().volume = MusicVolume;
+		}
 	}
 
 	public static void UpdateSfxVolume()
@@ -56,7 +58,10 @@ public class Settings
 
 		foreach (Transform speaker in speakers.transform)
 		{
-			speaker.gameObject.GetComponent<AudioSource>().volume = SfxVolume;
+			if (speaker.name != "MusicSpeaker")
+			{
+				speaker.GetComponent<AudioSource>().volume = SfxVolume;
+			}
 		}
 	}
 

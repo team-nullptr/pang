@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 	/// <summary>
 	/// The vertical velocity of a bullet.
 	/// </summary>
-	public float bulletSpeed = 10f;
+	public float bulletSpeed = 5f;
 	public SpriteRenderer trailSpriteRenderer;
 	public BoxCollider2D trailBoxCollider2D;
 	public WeaponManager shooter;
@@ -76,6 +76,6 @@ public class Bullet : MonoBehaviour
 	{
 		Destroy(gameObject);
 
-		WeaponManager.bulletCount--;
+		shooter.bulletCount--;
 	}
 }
