@@ -23,17 +23,6 @@ public class MenuManager : MonoBehaviour
 	/// </summary>
 	public string[] hardLevels;
 
-	public Slider musicVolumeSlider;
-	public Slider sfxVolumeSlider;
-
-	void Start()
-	{
-		// Set the music volume slider to the actual value from PlayerPrefs
-		musicVolumeSlider.value = Settings.MusicVolume;
-		// Set the sfx volume slider to the actual value from PlayerPrefs
-		sfxVolumeSlider.value = Settings.SfxVolume;
-	}
-
 	public void EnableMenu(GameObject menu)
 	{
 		foreach (GameObject _menu in menus)

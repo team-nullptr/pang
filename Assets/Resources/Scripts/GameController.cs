@@ -10,11 +10,26 @@ public class GameController : MonoBehaviour
 	/// The time after which the game ends and the player loses. Set to Mathf.Infinity to disable this.
 	/// </summary>
 	public float timer = Mathf.Infinity;
+	/// <summary>
+	/// The countdown before the level starts.
+	/// </summary>
 	public float countdown = 3f;
 	public Text timerText = null;
-	public Text CountdownText = null;
+	public Text countdownText = null;
+	/// <summary>
+	/// The level to be loaded after this level is won.
+	/// </summary>
+	public string nextLevel = "";
+	/// <summary>
+	/// The menu to be shown after the player wins.
+	/// </summary>
+	public GameObject winMenu;
+	/// <summary>
+	/// The menu to be shown after the player loses.
+	/// </summary>
+	public GameObject loseMenu;
 
-	bool gameOver = false;
+	bool gameOver = false, countdownFinished = false;
 
 	public void Pause()
 	{
@@ -37,19 +52,21 @@ public class GameController : MonoBehaviour
 	{
 		if (countdown > 0)
 		{
-			if (CountdownText != null)
-				CountdownText.text = Mathf.Ceil(countdown).ToString();
+			if (countdownText != null)
+				countdownText.text = Mathf.Ceil(countdown).ToString();
 
 			countdown -= Time.unscaledDeltaTime;
 
 			return;
 		}
-		else
+		else if (!countdownFinished)
 		{
 			Resume();
 
-			if (CountdownText != null)
-				CountdownText.gameObject.SetActive(false);
+			if (countdownText != null)
+				countdownText.gameObject.SetActive(false);
+
+			countdownFinished = true;
 		}
 
 		if (GameObject.FindGameObjectsWithTag("Ball").Length == 0)
@@ -80,7 +97,8 @@ public class GameController : MonoBehaviour
 		if (gameOver)
 			return;
 
-		Debug.Log("You win!");
+		winMenu.SetActive(true);
+		Pause();
 
 		gameOver = true;
 	}

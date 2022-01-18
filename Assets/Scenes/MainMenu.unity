@@ -981,8 +981,6 @@ MonoBehaviour:
   - Level1
   mediumLevels: []
   hardLevels: []
-  musicVolumeSlider: {fileID: 1767692155}
-  sfxVolumeSlider: {fileID: 1566581911}
 --- !u!1 &610464915
 GameObject:
   m_ObjectHideFlags: 0
@@ -5034,7 +5032,6 @@ RectTransform:
   - {fileID: 1258894079}
   - {fileID: 1110347316}
   - {fileID: 502915012}
-  - {fileID: 1497123253}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6121,79 +6118,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284708505}
   m_CullTransparentMesh: 1
---- !u!1001 &1289026551
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 758748177}
-    m_Modifications:
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939562, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 323071565309939564, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-      propertyPath: shotSound
-      value: 
-      objectReference: {fileID: 1300222231}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
 --- !u!1001 &1300222230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6206,8 +6130,12 @@ PrefabInstance:
       value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 8669124877267977182, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
+      propertyPath: countdown
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669124877267977182, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8669124877267977183, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: m_RootOrder
@@ -6255,11 +6183,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
---- !u!82 &1300222231 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8669124877369141368, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
-  m_PrefabInstance: {fileID: 1300222230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1300222232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8669124877195093857, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
@@ -6639,11 +6562,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495330784}
   m_CullTransparentMesh: 1
---- !u!4 &1497123253 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 323071565309939560, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
-  m_PrefabInstance: {fileID: 1289026551}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1566581909
 GameObject:
   m_ObjectHideFlags: 0
@@ -6654,6 +6572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1566581910}
   - component: {fileID: 1566581911}
+  - component: {fileID: 1566581912}
   m_Layer: 5
   m_Name: SFXVolumeSlider
   m_TagString: Untagged
@@ -6746,6 +6665,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1566581912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566581909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf20ae541d17e63428924caa5f6a48f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1575944503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6835,6 +6766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1767692154}
   - component: {fileID: 1767692155}
+  - component: {fileID: 1767692156}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -6927,6 +6859,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1767692156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767692153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275b99ae0d4de164d8aa5544f4be9694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1788888035
 GameObject:
   m_ObjectHideFlags: 0
