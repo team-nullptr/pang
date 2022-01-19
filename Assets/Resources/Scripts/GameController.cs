@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -44,6 +45,12 @@ public class GameController : MonoBehaviour
 	void Start()
 	{
 		Settings.Update();
+
+		if (timerText != null)
+		{
+			TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
+			timerText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+		}
 
 		Pause();
 	}
@@ -97,7 +104,8 @@ public class GameController : MonoBehaviour
 		if (gameOver)
 			return;
 
-		winMenu.SetActive(true);
+		if (winMenu != null)
+			winMenu.SetActive(true);
 		Pause();
 
 		gameOver = true;
@@ -108,8 +116,20 @@ public class GameController : MonoBehaviour
 		if (gameOver)
 			return;
 
-		Debug.Log("You lose!");
+		if (loseMenu != null)
+			loseMenu.SetActive(true);
+		Pause();
 
 		gameOver = true;
+	}
+
+	public void Restart()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	public void NextLevel()
+	{
+		SceneManager.LoadScene(nextLevel);
 	}
 }

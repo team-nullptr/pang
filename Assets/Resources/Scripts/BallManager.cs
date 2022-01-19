@@ -48,7 +48,6 @@ public class BallManager : MonoBehaviour
 	/// How high should the ball jump after it spawns.
 	/// </summary>
 	public const float spawnJump = 5f;
-	public AudioSource ballShotSound;
 	/// <summary>
 	/// The default pitch of the sound of breaking the ball.
 	/// </summary>
@@ -58,12 +57,14 @@ public class BallManager : MonoBehaviour
 	/// </summary>
 	public float breakSoundPitchFactor = 1f;
 
+	AudioSource ballShotSound;
 	GameController gameController;
 	BallMovement ballMovement;
 
 	void Start()
 	{
 		gameController = GameObject.Find("GameController").GetComponent<GameController>();
+		ballShotSound = GameObject.Find("BallBreakingSpeaker").GetComponent<AudioSource>();
 
 		// Scale according to the layer
 		transform.localScale = scaleFactor * new Vector3(1f, 1f, 1f) * Mathf.Pow(scaleByLayerFactor, layer);

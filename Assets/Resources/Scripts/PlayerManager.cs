@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-	public GameController gameController;
 	public GameObject deathParticles;
 	/// <summary>
 	/// The player's current health.
@@ -19,12 +18,16 @@ public class PlayerManager : MonoBehaviour
 	/// How long should the player be invulnerable after getting hit.
 	/// </summary>
 	public const float invulnerabilityTime = 1.5f;
-	public AudioSource hitSound;
 
+	GameController gameController;
 	float invulnerabilityTimer;
+	AudioSource hitSound;
 
 	void Start()
 	{
+		gameController = GameObject.Find("GameController").GetComponent<GameController>();
+		hitSound = GameObject.Find("HitSpeaker").GetComponent<AudioSource>();
+
 		if (hpText != null)
 		{
 			hpText.text = hp.ToString();

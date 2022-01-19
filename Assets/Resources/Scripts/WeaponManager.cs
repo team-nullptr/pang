@@ -10,9 +10,6 @@ public class WeaponManager : MonoBehaviour
 	/// The maximum number of bullets that can be on the screen at once.
 	/// </summary>
 	public int maxBulletCount = 0;
-
-	public AudioSource shotSound;
-
 	/// <summary>
 	/// How high above the ground should the bullet spawn.
 	/// </summary>
@@ -22,10 +19,12 @@ public class WeaponManager : MonoBehaviour
 	/// </summary>
 	public int bulletCount = 0;
 
+	AudioSource shotSound;
 	new CapsuleCollider2D collider;
 
 	void Start()
 	{
+		shotSound = GameObject.Find("ShotSpeaker").GetComponent<AudioSource>();
 		collider = GetComponent<CapsuleCollider2D>();
 	}
 
