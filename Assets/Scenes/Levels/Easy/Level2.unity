@@ -4046,6 +4046,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4017546353423356249, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017546353423356249, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017546353423356249, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 167a3a50c6b57b8469dc1da728922378, type: 2}
+    - target: {fileID: 5913383032125947078, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
 --- !u!1001 &1621871434

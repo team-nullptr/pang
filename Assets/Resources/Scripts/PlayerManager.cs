@@ -14,6 +14,10 @@ public class PlayerManager : MonoBehaviour
 	/// How long should the player be invulnerable after getting hit.
 	/// </summary>
 	public const float invulnerabilityTime = 1.5f;
+	/// <summary>
+	/// The animation to be played after the player gets hit.
+	/// </summary>
+	public Animation hitAnimation;
 
 	GameController gameController;
 	float invulnerabilityTimer;
@@ -26,7 +30,14 @@ public class PlayerManager : MonoBehaviour
 		hitSound = GameObject.Find("HitSpeaker").GetComponent<AudioSource>();
 		hpText = GameObject.Find("HpText").GetComponent<Text>();
 
+		// Set the HP text to the current hp.
 		hpText.text = hp.ToString();
+
+		// Set the hit animation duration to the invulnerability time.
+		foreach (AnimationState state in hitAnimation)
+		{
+			state.speed = hitAnimation.clip.length / invulnerabilityTime;
+		}
 	}
 
 	void Update()
@@ -59,12 +70,12 @@ public class PlayerManager : MonoBehaviour
 			hitSound.Play();
 		}
 
+		hitAnimation.Play();
+
 		invulnerabilityTimer = invulnerabilityTime;
 
 		if (hp <= 0)
-		{
 			Die();
-		}
 
 		return true;
 	}
