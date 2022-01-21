@@ -11,10 +11,6 @@ public class PlayerManager : MonoBehaviour
 	/// </summary>
 	public int hp = 3;
 	/// <summary>
-	/// HP counter UI.
-	/// </summary>
-	public Text hpText;
-	/// <summary>
 	/// How long should the player be invulnerable after getting hit.
 	/// </summary>
 	public const float invulnerabilityTime = 1.5f;
@@ -22,16 +18,15 @@ public class PlayerManager : MonoBehaviour
 	GameController gameController;
 	float invulnerabilityTimer;
 	AudioSource hitSound;
+	Text hpText;
 
 	void Start()
 	{
 		gameController = GameObject.Find("GameController").GetComponent<GameController>();
 		hitSound = GameObject.Find("HitSpeaker").GetComponent<AudioSource>();
+		hpText = GameObject.Find("HpText").GetComponent<Text>();
 
-		if (hpText != null)
-		{
-			hpText.text = hp.ToString();
-		}
+		hpText.text = hp.ToString();
 	}
 
 	void Update()
