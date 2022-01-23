@@ -21,6 +21,29 @@ public class WeaponManager : MonoBehaviour
 
 	AudioSource shotSound;
 	new CapsuleCollider2D collider;
+	PlayerControls controls;
+
+	// INPUT
+
+	void Awake()
+	{
+		controls = new PlayerControls();
+
+		// Shoot the bullet when the fire key is pressed.
+		controls.Gameplay.Shoot.performed += ctx => Shoot();
+	}
+
+	void OnEnable()
+	{
+		controls.Gameplay.Enable();
+	}
+
+	void OnDisable()
+	{
+		controls.Gameplay.Disable();
+	}
+
+	// LOGIC
 
 	void Start()
 	{
@@ -52,13 +75,5 @@ public class WeaponManager : MonoBehaviour
 		// Play the shot sound.
 		if (shotSound != null)
 			shotSound.Play();
-	}
-
-	void Update()
-	{
-		if (Input.GetKeyDown(fireKey))
-		{
-			Shoot();
-		}
 	}
 }

@@ -7,6 +7,26 @@ public class MovementManager : MonoBehaviour
 	public float speed = 20f;
 	new Rigidbody2D rigidbody;
 	new CapsuleCollider2D collider;
+	PlayerControls controls;
+	Vector2 movement;
+
+	void Awake()
+	{
+		controls = new PlayerControls();
+
+		controls.Gameplay.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
+		controls.Gameplay.Move.canceled += ctx => movement = Vector2.zero;
+	}
+
+	void OnEnable()
+	{
+		controls.Gameplay.Enable();
+	}
+
+	void OnDisable()
+	{
+		controls.Gameplay.Disable();
+	}
 
 	void Start()
 	{
@@ -17,7 +37,7 @@ public class MovementManager : MonoBehaviour
 	void Update()
 	{
 		// Movement
-		float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+		float x = movement.x * Time.deltaTime * speed;
 
 		transform.position = new Vector2(transform.position.x + x, transform.position.y);
 
