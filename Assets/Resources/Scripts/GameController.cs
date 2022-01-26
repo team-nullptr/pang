@@ -44,8 +44,10 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
+		// Update the volume according to the settings
 		Settings.Update();
 
+		// Set the timer text to the timer value
 		if (timerText != null)
 		{
 			TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
