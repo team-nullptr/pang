@@ -15,7 +15,7 @@ public class BallManager : MonoBehaviour
 	/// <summary>
 	/// The ball prefab.
 	/// </summary>
-	public GameObject ballPrefab;
+	public BallManager ballPrefab;
 	/// <summary>
 	/// The size of the biggest ball.
 	/// </summary>
@@ -28,10 +28,6 @@ public class BallManager : MonoBehaviour
 	/// The vertical velocity of the ball for the highest layer.
 	/// </summary>
 	public const float defaultVerticalVelocity = 1f;
-	/// <summary>
-	/// The horizontal velocity of the ball for the highest layer.
-	/// </summary>
-	public const float defaultSpeed = 3f;
 	/// <summary>
 	/// The factor by which the speed is multiplied for the next layer.
 	/// </summary>
@@ -56,10 +52,14 @@ public class BallManager : MonoBehaviour
 	/// The factor by which the pitch of the sound of breaking the ball is multiplied for the next layer.
 	/// </summary>
 	public float breakSoundPitchFactor = 1f;
+	/// <summary>
+	/// The sprites of the balls.
+	/// </summary>
+	public Sprite[] sprites;
+	public BallMovement ballMovement;
 
 	AudioSource ballShotSound;
 	GameController gameController;
-	BallMovement ballMovement;
 
 	void Start()
 	{
@@ -70,10 +70,14 @@ public class BallManager : MonoBehaviour
 		transform.localScale = scaleFactor * new Vector3(1f, 1f, 1f) * Mathf.Pow(scaleByLayerFactor, layer);
 
 		// Set the horizontal velocity
-		ballMovement = GetComponent<BallMovement>();
-
 		ballMovement.speed *= Mathf.Pow(speedFactor, layer);
 		ballMovement.jumpAltitude = defaultJumpHeight * Mathf.Pow(jumpHeightFactor, layer);
+
+		// Set the ball sprite
+		if(layer < sprites.Length)
+			GetComponent<SpriteRenderer>().sprite = sprites[layer];
+		else
+			GetComponent<SpriteRenderer>().sprite = sprites[sprites.Length - 1];
 	}
 
 	public void GetShot()
@@ -93,20 +97,17 @@ public class BallManager : MonoBehaviour
 		// If the ball isn't the smallest size, create two new balls
 		if (layer < maxLayer)
 		{
-			GameObject ball1 = Instantiate(ballPrefab, transform.position, Quaternion.identity);
-			GameObject ball2 = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+			BallManager ball1 = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+			BallManager ball2 = Instantiate(ballPrefab, transform.position, Quaternion.identity);
 
-			BallManager ballManager1 = ball1.GetComponent<BallManager>();
-			BallManager ballManager2 = ball2.GetComponent<BallManager>();
+			BallMovement ballMovement1 = ball1.GetBallMovement();
+			BallMovement ballMovement2 = ball2.GetBallMovement();
 
-			BallMovement ballMovement1 = ball1.GetComponent<BallMovement>();
-			BallMovement ballMovement2 = ball2.GetComponent<BallMovement>();
+			ball1.layer = layer + 1;
+			ball2.layer = layer + 1;
 
-			ballManager1.layer = layer + 1;
-			ballManager2.layer = layer + 1;
-
-			ballMovement1.speed = defaultSpeed;
-			ballMovement2.speed = -defaultSpeed;
+			ballMovement1.speed = ballMovement.speed;
+			ballMovement2.speed = -ballMovement.speed;
 
 			ballMovement1.Jump(spawnJump);
 			ballMovement2.Jump(spawnJump);

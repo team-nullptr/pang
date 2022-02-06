@@ -29,6 +29,22 @@ public class GameController : MonoBehaviour
 	/// The menu to be shown after the player loses.
 	/// </summary>
 	public GameObject loseMenu;
+	/// <summary>
+	/// The level music.
+	/// </summary>
+	public AudioSource music;
+	/// <summary>
+	/// When time is lower than value, the music will be faster and timer will be red.
+	/// </summary>
+	public float warningTime = 10f;
+	/// <summary>
+	/// How faster the music will be when time is lower than warningTime.
+	/// </summary>
+	public float warningTimeMusicPitch = 1.2f;
+	/// <summary>
+	/// The color of the timer text when time is lower than warningTime.
+	/// </summary>
+	public Color warningTimeColor = Color.red;
 
 	bool gameOver = false, countdownFinished = false;
 
@@ -44,9 +60,6 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		// Update the volume according to the settings
-		Settings.Update();
-
 		// Set the timer text to the timer value
 		if (timerText != null)
 		{
@@ -91,6 +104,11 @@ public class GameController : MonoBehaviour
 			{
 				timer = 0f;
 				Lose();
+			}
+
+			if(timer <= warningTime) {
+				music.pitch = warningTimeMusicPitch;
+				timerText.color = warningTimeColor;
 			}
 
 			if (timerText != null)

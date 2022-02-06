@@ -51,6 +51,8 @@ public class WeaponManager : MonoBehaviour
 		collider = GetComponent<CapsuleCollider2D>();
 	}
 
+	//FIXME: Don't let the player shoot when the game is paused.
+
 	void Shoot()
 	{
 		// If the bullet count is at the maximum, do nothing.

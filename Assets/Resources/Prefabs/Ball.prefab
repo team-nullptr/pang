@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9cf6fc739ed776545b06a6dad5a7bfd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,7 +111,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5927597076129177033
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,6 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbcc003402108f74a8747a352c06b56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 5927597076129177026}
-  ballShotSound: {fileID: 0}
+  ballPrefab: {fileID: 3372747971277880200}
   breakSoundPitchFactor: 2
+  sprites:
+  - {fileID: 21300000, guid: 9cf6fc739ed776545b06a6dad5a7bfd3, type: 3}
+  - {fileID: 21300000, guid: 0afe931071f2b8d4f99446f48e907469, type: 3}
+  - {fileID: 21300000, guid: f5dbb9786a95f034ab55a429eb9a46a3, type: 3}
+  - {fileID: 21300000, guid: 403db05f06c65114f99256f39d6200b0, type: 3}
+  ballMovement: {fileID: 8672981558760913651}

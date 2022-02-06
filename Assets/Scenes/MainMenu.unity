@@ -915,7 +915,10 @@ MonoBehaviour:
   - Level1
   - Level2
   - Level3
-  mediumLevels: []
+  - Level4
+  - Level5
+  mediumLevels:
+  - Level6
   hardLevels: []
 --- !u!1 &640096392
 GameObject:
@@ -5964,7 +5967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8669124877267977182, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8669124877267977183, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: m_RootOrder
