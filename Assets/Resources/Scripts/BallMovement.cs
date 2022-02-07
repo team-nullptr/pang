@@ -48,7 +48,7 @@ public class BallMovement : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnCollisionStay2D(Collision2D collision)
 	{
 		// Calculate hit direction
 		Vector2 directionalVector = (collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y)).normalized;

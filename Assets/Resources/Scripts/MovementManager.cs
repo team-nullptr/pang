@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class MovementManager : MonoBehaviour
 {
-	public float speed = 20f;
+	/// <summary>
+	/// Player's velocity.
+	/// </summary>
+	public float speed = 7f;
+
 	new Rigidbody2D rigidbody;
 	new CapsuleCollider2D collider;
 	PlayerControls controls;
@@ -37,9 +41,9 @@ public class MovementManager : MonoBehaviour
 	void Update()
 	{
 		// Movement
-		float x = movement.x * Time.deltaTime * speed;
+		float x = movement.x * speed;
 
-		transform.position = new Vector2(transform.position.x + x, transform.position.y);
+		rigidbody.velocity = new Vector2(x, rigidbody.velocity.y);
 
 		// Limit player movenent to the screen borders
 		if (Camera.main.WorldToScreenPoint(transform.position - collider.bounds.extents).x < 0f)
