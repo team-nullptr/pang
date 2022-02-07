@@ -7,7 +7,7 @@ public class BallManager : MonoBehaviour
 	/// <summary>
 	/// The bigger the number, the smaller the ball.
 	/// </summary>
-	int layer = 0;
+	public int layer = 0;
 	/// <summary>
 	/// The biggest layer a ball could get before getting destroyed (the smallest ball size).
 	/// </summary>

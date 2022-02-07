@@ -66,18 +66,17 @@ public class BallMovement : MonoBehaviour
 		{
 			float force = 2 * -Physics2D.gravity.y * (jumpAltitude + groundLevel - transform.position.y);
 			rigidbody2D.velocity = new Vector2(
-				rigidbody2D.velocity.x, force > 0 ?
+				speed, force > 0 ?
 				Mathf.Sqrt(Mathf.Abs(force)) :
-				-Mathf.Sqrt(Mathf.Abs(force)));
+				0f);
 		}
 
-		// If the ball hits the ceiling, bounce the ball
+		// If the ball hits the ceiling, bounce the ball back
 
 		if (directionalVector.y > 0.5)
 		{
-			rigidbody2D.velocity = new Vector2(
-				rigidbody2D.velocity.x,
-				collision.relativeVelocity.y);
+			float force = 2 * -Physics2D.gravity.y * (jumpAltitude + groundLevel - transform.position.y);
+			rigidbody2D.velocity = new Vector2(speed, -Mathf.Sqrt(Mathf.Abs(force)));
 		}
 	}
 
