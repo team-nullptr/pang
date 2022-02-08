@@ -137,8 +137,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -0.02}
+  m_Size: {x: 1, y: 1.95}
   m_Direction: 0
 --- !u!114 &323071565309939564
 MonoBehaviour:
@@ -200,7 +200,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 167a3a50c6b57b8469dc1da728922378, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 167a3a50c6b57b8469dc1da728922378, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0

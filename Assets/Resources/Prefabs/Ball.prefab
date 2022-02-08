@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbcc003402108f74a8747a352c06b56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 0
   ballPrefab: {fileID: 3372747971277880200}
   breakSoundPitchFactor: 2
   sprites:

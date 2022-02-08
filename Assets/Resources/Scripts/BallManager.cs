@@ -60,6 +60,7 @@ public class BallManager : MonoBehaviour
 
 	AudioSource ballShotSound;
 	GameController gameController;
+	bool destroyed = false;
 
 	void Start()
 	{
@@ -94,6 +95,9 @@ public class BallManager : MonoBehaviour
 
 	public void BreakBall()
 	{
+		if(destroyed)
+			return;
+
 		// If the ball isn't the smallest size, create two new balls
 		if (layer < maxLayer)
 		{
@@ -114,6 +118,7 @@ public class BallManager : MonoBehaviour
 		}
 
 		Destroy(gameObject);
+		destroyed = true;
 	}
 
 	public BallMovement GetBallMovement()
