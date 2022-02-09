@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
 	public KeyCode fireKey = KeyCode.Space;
-	public GameObject bulletPrefab;
+	public BoxCollider2D bulletPrefab;
 	/// <summary>
 	/// The maximum number of bullets that can be on the screen at once.
 	/// </summary>
@@ -13,14 +13,13 @@ public class WeaponManager : MonoBehaviour
 	/// <summary>
 	/// How high above the ground should the bullet spawn.
 	/// </summary>
-	public const float bulletOffset = 0.1f;
+	public const float bulletOffset = 0f;
 	/// <summary>
-	/// How many bullets are currently on the screen.
+	/// Player's collider.
 	/// </summary>
-	public int bulletCount = 0;
+	public new CapsuleCollider2D collider;
 
 	AudioSource shotSound;
-	new CapsuleCollider2D collider;
 	PlayerControls controls;
 
 	// INPUT
@@ -47,32 +46,37 @@ public class WeaponManager : MonoBehaviour
 
 	void Start()
 	{
+		// Get the bullet shot sound
 		shotSound = GameObject.Find("ShotSpeaker").GetComponent<AudioSource>();
-		collider = GetComponent<CapsuleCollider2D>();
 	}
-
-	//FIXME: Don't let the player shoot when the game is paused.
 
 	void Shoot()
 	{
+		// If the game is over, don't shoot.
+		if (GameState.paused)
+			return;
+
+		// Count the bullets on scene
+		int bulletCount = 0;
+
+		foreach(GameObject _bullet in GameObject.FindGameObjectsWithTag("Bullet"))
+		{
+			bulletCount++;
+		}
+
 		// If the bullet count is at the maximum, do nothing.
 		if (bulletCount >= maxBulletCount)
 			return;
 
 		// Create a new bullet.
-		GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, bulletOffset - collider.bounds.extents.y, 0f), Quaternion.identity);
+		BoxCollider2D bulletCollider = Instantiate(
+			bulletPrefab,
+			transform.position - new Vector3(0f, collider.bounds.extents.y, 0f),
+			Quaternion.identity
+		);
 
-		// Get the neccessary components.
-		Bullet bulletComponent = bullet.GetComponent<Bullet>();
-		BoxCollider2D bulletCollider = bullet.GetComponent<BoxCollider2D>();
-
-		// Set the bullet's shooter.
-		bulletComponent.shooter = this;
-		// Put the bullet a bit above the ground so it doesn't collide with it and automatically destroy it.
-		bullet.transform.position += new Vector3(0f, bulletCollider.bounds.extents.y, 0f);
-
-		// Add one to the bullet count.
-		bulletCount++;
+		// Fix the bullet position.
+		bulletCollider.gameObject.transform.position += new Vector3(0f, bulletCollider.bounds.extents.y, 0f);
 
 		// Play the shot sound.
 		if (shotSound != null)

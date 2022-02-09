@@ -10,10 +10,9 @@ public class Bullet : MonoBehaviour
 	public float bulletSpeed = 5f;
 	public SpriteRenderer trailSpriteRenderer;
 	public BoxCollider2D trailBoxCollider2D;
-	public WeaponManager shooter;
-	public AudioSource bulletBreakingSound;
-
+	
 	float startingPoint;
+	AudioSource bulletBreakingSound;
 	new BoxCollider2D collider;
 
 	// Start is called before the first frame update
@@ -56,10 +55,17 @@ public class Bullet : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		if (collider.tag != "Player" && collider.tag != "Bullet" && collider.tag != "Ball")
-		{
-			BreakBullet();
-		}
+		// If the bullet hits a player or another bullet, do nothing
+		// If it hits a ball, the BallManager will handle it
+		if (collider.tag == "Player" || collider.tag == "Bullet" || collider.tag == "Ball")
+			return;
+
+		// If the bullet collides from the bottom, ignore it
+		if(collider.ClosestPoint(transform.position).y < transform.position.y)
+			return;
+
+		// Destroy the bullet
+		BreakBullet();
 	}
 
 	public void BreakBullet()
@@ -75,7 +81,5 @@ public class Bullet : MonoBehaviour
 	public void DestroyBullet()
 	{
 		Destroy(gameObject);
-
-		shooter.bulletCount--;
 	}
 }

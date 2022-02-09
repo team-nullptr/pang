@@ -157,8 +157,6 @@ MonoBehaviour:
   bulletSpeed: 5
   trailSpriteRenderer: {fileID: 6923365163138965308}
   trailBoxCollider2D: {fileID: 1167326613077568866}
-  shooter: {fileID: 0}
-  bulletBreakingSound: {fileID: 0}
 --- !u!61 &634199954977020786
 BoxCollider2D:
   m_ObjectHideFlags: 0

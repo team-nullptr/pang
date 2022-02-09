@@ -51,11 +51,13 @@ public class GameController : MonoBehaviour
 	public void Pause()
 	{
 		Time.timeScale = 0;
+		GameState.paused = true;
 	}
 
 	public void Resume()
 	{
 		Time.timeScale = 1;
+		GameState.paused = false;
 	}
 
 	void Start()
@@ -138,6 +140,7 @@ public class GameController : MonoBehaviour
 
 		if (loseMenu != null)
 			loseMenu.SetActive(true);
+
 		Pause();
 
 		gameOver = true;

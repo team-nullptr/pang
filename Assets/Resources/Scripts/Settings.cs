@@ -70,4 +70,6 @@ public class Settings
 		UpdateMusicVolume();
 		UpdateSfxVolume();
 	}
+
+	private Settings() {}
 }

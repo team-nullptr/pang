@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireKey: 32
-  bulletPrefab: {fileID: 8081599144398035011, guid: dc48679682725fe4e94727830e1c125a, type: 3}
+  bulletPrefab: {fileID: 634199954977020786, guid: dc48679682725fe4e94727830e1c125a, type: 3}
   maxBulletCount: 1
-  bulletCount: 0
+  collider: {fileID: 1734732123124968531}
 --- !u!114 &323071565309939555
 MonoBehaviour:
   m_ObjectHideFlags: 0
