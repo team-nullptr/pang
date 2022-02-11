@@ -21,6 +21,7 @@ public class WeaponManager : MonoBehaviour
 
 	AudioSource shotSound;
 	PlayerControls controls;
+	MovementManager movement;
 
 	// INPUT
 
@@ -46,6 +47,9 @@ public class WeaponManager : MonoBehaviour
 
 	void Start()
 	{
+		// Get the player movement script
+		movement = GetComponent<MovementManager>();
+
 		// Get the bullet shot sound
 		shotSound = GameObject.Find("ShotSpeaker").GetComponent<AudioSource>();
 	}
@@ -54,6 +58,10 @@ public class WeaponManager : MonoBehaviour
 	{
 		// If the game is over, don't shoot.
 		if (GameState.paused)
+			return;
+
+		// If the player is on ladder, don't shoot.
+		if(movement.IsOnLadder())
 			return;
 
 		// Count the bullets on scene
