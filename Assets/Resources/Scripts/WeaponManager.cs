@@ -56,9 +56,8 @@ public class WeaponManager : MonoBehaviour
 		if (GameState.paused)
 			return;
 
-		// FIXME: should actually check if the player is above the ground
-		// If the player is on ladder, don't shoot.
-		if(movement.IsOnLadder())
+		// If the player is above ground, don't shoot.
+		if(!Physics2D.BoxCast(transform.position, collider.size, 0, Vector2.down, 0.1f, LayerMask.GetMask("Terrain")))
 			return;
 
 		// Count the bullets on scene
