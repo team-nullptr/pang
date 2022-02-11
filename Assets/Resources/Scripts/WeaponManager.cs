@@ -11,10 +11,6 @@ public class WeaponManager : MonoBehaviour
 	/// </summary>
 	public int maxBulletCount = 0;
 	/// <summary>
-	/// How high above the ground should the bullet spawn.
-	/// </summary>
-	public const float bulletOffset = 0f;
-	/// <summary>
 	/// Player's collider.
 	/// </summary>
 	public new CapsuleCollider2D collider;
@@ -60,6 +56,7 @@ public class WeaponManager : MonoBehaviour
 		if (GameState.paused)
 			return;
 
+		// FIXME: should actually check if the player is above the ground
 		// If the player is on ladder, don't shoot.
 		if(movement.IsOnLadder())
 			return;

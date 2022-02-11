@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: 0
   ballPrefab: {fileID: 3372747971277880200}
+  pointsPrefab: {fileID: 6777898962718531215, guid: 77af95276918b054dba62f67bf88585e, type: 3}
   breakSoundPitchFactor: 2
   sprites:
   - {fileID: 21300000, guid: 9cf6fc739ed776545b06a6dad5a7bfd3, type: 3}

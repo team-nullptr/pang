@@ -45,6 +45,18 @@ public class BallManager : MonoBehaviour
 	/// </summary>
 	public const float spawnJump = 5f;
 	/// <summary>
+	/// The points player gets for the ball of the highest layer.
+	/// </summary>
+	public const int defaultPoints = 3000;
+	/// <summary>
+	/// The factor by which the points are multiplied for the next layer.
+	/// </summary>
+	public const float pointsFactor = 0.5f;
+	/// <summary>
+	/// The prefab of the points text to be shown after the ball is destroyed.
+	/// </summary>
+	public PointsAnimation pointsPrefab;
+	/// <summary>
 	/// The default pitch of the sound of breaking the ball.
 	/// </summary>
 	public const float defaultSoundPitch = 0.5f;
@@ -60,11 +72,14 @@ public class BallManager : MonoBehaviour
 
 	AudioSource ballShotSound;
 	GameController gameController;
+	PointsManager pointsManager;
 	bool destroyed = false;
 
 	void Start()
 	{
-		gameController = GameObject.Find("GameController").GetComponent<GameController>();
+		GameObject gameControllerObject = GameObject.Find("GameController");
+		gameController = gameControllerObject.GetComponent<GameController>();
+		pointsManager = gameControllerObject.GetComponent<PointsManager>();
 		ballShotSound = GameObject.Find("BallBreakingSpeaker").GetComponent<AudioSource>();
 
 		// Scale according to the layer
@@ -83,6 +98,7 @@ public class BallManager : MonoBehaviour
 
 	public void GetShot()
 	{
+		// Play the ball breaking sound
 		if (ballShotSound != null)
 		{
 			ballShotSound.pitch = defaultSoundPitch * Mathf.Pow(breakSoundPitchFactor, layer);
@@ -90,6 +106,22 @@ public class BallManager : MonoBehaviour
 			ballShotSound.Play();
 		}
 
+		// Give player points
+		if(pointsManager != null) {
+			int points = (int)(defaultPoints * Mathf.Pow(pointsFactor, layer));
+
+			pointsManager.Points += points;
+
+			PointsAnimation pointsAnimation = Instantiate(
+				pointsPrefab,
+				transform.position + (Vector3)Random.insideUnitCircle * transform.localScale.x * 2f, // To add a little variety
+				Quaternion.identity
+			);
+
+			pointsAnimation.text = "+" + points;
+		}
+
+		// Destroy the ball
 		BreakBall();
 	}
 
@@ -117,6 +149,7 @@ public class BallManager : MonoBehaviour
 			ballMovement2.Jump(spawnJump);
 		}
 
+		// Destroy the ball
 		Destroy(gameObject);
 		destroyed = true;
 	}
