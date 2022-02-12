@@ -12,25 +12,12 @@ public class Bullet : MonoBehaviour
 	public BoxCollider2D trailBoxCollider2D;
 	
 	float startingPoint;
-	AudioSource bulletBreakingSound;
-	new BoxCollider2D collider;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		// Save the starting point of the bullet
 		startingPoint = transform.position.y;
-
-		// Get the bullet breaking sound
-		GameObject bulletBreakingSoundObject = GameObject.Find("BulletBreakingSpeaker");
-
-		if (bulletBreakingSoundObject != null)
-		{
-			bulletBreakingSound = bulletBreakingSoundObject.GetComponent<AudioSource>();
-		}
-
-		// Get the bullet collider
-		collider = GetComponent<BoxCollider2D>();
 	}
 
 	// Update is called once per frame
@@ -45,41 +32,5 @@ public class Bullet : MonoBehaviour
 
 		// Fix box collider positioning
 		trailBoxCollider2D.offset = new Vector2(trailBoxCollider2D.offset.x, -trailBoxCollider2D.size.y / 2f);
-
-		// Destroy the bullet when it goes off screen
-		if (transform.position.y + collider.bounds.extents.y > Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y)
-		{
-			BreakBullet();
-		}
-	}
-
-	void OnTriggerEnter2D(Collider2D collider)
-	{
-		// If the bullet hits a player or another bullet, do nothing
-		// If it hits a ball, the BallManager will handle it
-		if (collider.tag == "Player" || collider.tag == "Bullet" || collider.tag == "Ball")
-			return;
-
-		// If the bullet collides from the bottom, ignore it
-		if(collider.ClosestPoint(transform.position).y < transform.position.y)
-			return;
-
-		// Destroy the bullet
-		BreakBullet();
-	}
-
-	public void BreakBullet()
-	{
-		if (bulletBreakingSound != null)
-		{
-			bulletBreakingSound.Play();
-		}
-
-		DestroyBullet();
-	}
-
-	public void DestroyBullet()
-	{
-		Destroy(gameObject);
 	}
 }

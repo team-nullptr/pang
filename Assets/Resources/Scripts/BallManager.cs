@@ -158,32 +158,34 @@ public class BallManager : MonoBehaviour
 	{
 		return ballMovement;
 	}
-
-	// When a ball hits the bullet, destroy the ball and the bullet
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		switch (collider.tag)
+		if(collider.tag != "Player")
+			return;
+		
+		// Player hitbox hit
+		if (collider.transform.parent.GetComponent<PlayerManager>().GetHurt())
+		{
+			BreakBall();
+		}
+	}
+
+	// When a ball hits the bullet, destroy the ball and the bullet
+	void OnCollisionEnter2D(Collision2D collision) {
+		switch (collision.gameObject.tag)
 		{
 			case "Bullet":
 				GetShot();
 
-				collider.gameObject.GetComponent<Bullet>().DestroyBullet();
+				collision.gameObject.GetComponent<BulletDestruction>().DestroyBullet();
 
 				break;
 
 			case "BulletTrail":
 				GetShot();
 
-				collider.gameObject.transform.parent.parent.GetComponent<Bullet>().DestroyBullet();
+				collision.gameObject.transform.parent.parent.GetComponent<BulletDestruction>().DestroyBullet();
 
-				break;
-
-			case "Player":
-				// Player hitbox hit
-				if (collider.transform.parent.GetComponent<PlayerManager>().GetHurt())
-				{
-					BreakBall();
-				}
 				break;
 		}
 	}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Pang_0
+  m_Name: Bricks
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -4937692781286065678, guid: 9cc55133b5bde4e42a64c31d76d68d7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
