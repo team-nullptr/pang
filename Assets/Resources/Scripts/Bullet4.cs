@@ -14,6 +14,7 @@ public class Bullet4 : MonoBehaviour
 	public float lifeTime = 5f;
 
 	new Rigidbody2D rigidbody;
+	new Collider2D collider;
 	BulletDestruction bulletDestruction;
 
 	float lifeTimer = 0f;
@@ -22,6 +23,9 @@ public class Bullet4 : MonoBehaviour
     {
 		// Get the rigidbody
         rigidbody = GetComponent<Rigidbody2D>();
+
+		// Get the collider
+		collider = GetComponent<Collider2D>();
 
 		// Get the bullet destruction script
 		bulletDestruction = GetComponent<BulletDestruction>();
@@ -36,5 +40,22 @@ public class Bullet4 : MonoBehaviour
 
 		if(lifeTimer > lifeTime)
 			bulletDestruction.BreakBullet();
+
+		// If the bullet goes off-screen, bounce it back
+		if (
+			Camera.main.WorldToScreenPoint(transform.position - collider.bounds.extents).x < 0f ||
+			Camera.main.WorldToScreenPoint(transform.position + collider.bounds.extents).x > Screen.width
+		) {
+			rigidbody.velocity = new Vector2(-rigidbody.velocity.x, rigidbody.velocity.y);
+			transform.position = new Vector3(
+				Mathf.Clamp(
+					transform.position.x,
+					Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x + collider.bounds.extents.x,
+					Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - collider.bounds.extents.x
+				),
+				transform.position.y,
+				transform.position.z
+			);
+		}
 	}
 }
