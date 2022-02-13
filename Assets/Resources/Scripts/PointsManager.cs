@@ -7,18 +7,24 @@ public class PointsManager : MonoBehaviour
 {
 	public Text pointsText;
 
-    int points;
+    int score;
 
-	public int Points
+	public int Score
 	{
 		get
 		{
-			return points;
+			return score;
 		}
 		set
 		{
-			points = value;
-			pointsText.text = points.ToString();
+			score = value;
+			pointsText.text = score.ToString();
 		}
+	}
+
+	public static int TotalScore = 0;
+
+	public void ResetTotalScore() {
+		TotalScore = 0;
 	}
 }

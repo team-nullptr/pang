@@ -110,7 +110,7 @@ public class BallManager : MonoBehaviour
 		if(pointsManager != null) {
 			int points = (int)(defaultPoints * Mathf.Pow(pointsFactor, layer));
 
-			pointsManager.Points += points;
+			pointsManager.Score += points;
 
 			PointsAnimation pointsAnimation = Instantiate(
 				pointsPrefab,

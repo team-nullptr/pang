@@ -11055,7 +11055,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1292013217}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 595910643}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Module2Level3
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1292013217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11179,6 +11191,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
+--- !u!114 &1300222231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 436479843969955487, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
+  m_PrefabInstance: {fileID: 1300222230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af57f5fbfe35b8a45b940d5d23b47ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1322897778
 GameObject:
   m_ObjectHideFlags: 0
@@ -14812,6 +14835,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 750710761}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1300222231}
+        m_TargetAssemblyTypeName: PointsManager, Assembly-CSharp
+        m_MethodName: ResetTotalScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

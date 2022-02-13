@@ -49,7 +49,13 @@ public class GameController : MonoBehaviour
 	/// The color of the timer text when time is lower than warningTime.
 	/// </summary>
 	public Color warningTimeColor = Color.red;
+	/// <summary>
+	/// The text in win menu that displays score info.
+	/// </summary>
+	public Text scoreText;
 
+	PointsManager pointsManager;
+	PlayerManager playerManager;
 	bool gameOver = false, countdownFinished = false;
 
 	public void Pause()
@@ -73,6 +79,16 @@ public class GameController : MonoBehaviour
 			timerText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
 		}
 
+		// Get the points manager
+		pointsManager = GetComponent<PointsManager>();
+
+		// Get the player manager
+		GameObject player = GameObject.Find("Player");
+
+		if (player != null)
+			playerManager = player.GetComponent<PlayerManager>();
+
+		// Start a countdown
 		Pause();
 	}
 
@@ -130,8 +146,32 @@ public class GameController : MonoBehaviour
 		if (gameOver)
 			return;
 
-		if (winMenu != null)
+		if (winMenu != null) {
+			// Enable the win menu
 			winMenu.SetActive(true);
+		}
+
+		// Update the points info
+		if(pointsManager != null) {
+			// Count additional points for time and hp
+			int pointsForTime = (int)timer * 100;
+			int pointsForHp = 0;
+			if(playerManager != null)
+				pointsForHp = (playerManager.hp - 1) * 500;
+			PointsManager.TotalScore += pointsManager.Score + pointsForTime + pointsForHp;
+
+			// Display the points information
+			if(scoreText != null) {
+				// I seriously don't want to do this like that, but it would be too much work to change it
+				scoreText.text =
+					"Score: " + pointsManager.Score.ToString() +
+					"\nAdditional points for time: " + pointsForTime.ToString() +
+					"\nAdditional points for HP: " + pointsForHp.ToString() +
+					"\nTotal score: " + PointsManager.TotalScore.ToString();
+			}
+		}
+
+		// Pause the game
 		Pause();
 
 		gameOver = true;

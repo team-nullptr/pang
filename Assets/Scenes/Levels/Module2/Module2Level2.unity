@@ -2267,6 +2267,10 @@ PrefabInstance:
       propertyPath: timer
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 8669124877267977182, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
+      propertyPath: nextLevel
+      value: Module2Level3
+      objectReference: {fileID: 0}
     - target: {fileID: 8669124877267977183, guid: 5c0aa9d24371bf543bbe4bbbc123ed48, type: 3}
       propertyPath: m_RootOrder
       value: 1
