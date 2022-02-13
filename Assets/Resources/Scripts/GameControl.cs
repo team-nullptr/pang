@@ -12,16 +12,12 @@ public class GameControl : MonoBehaviour
 		controls = new PlayerControls();
 
 		controls.Control.Pause.performed += ctx => PauseEvent();
+		controls.Control.Restart.performed += ctx => RestartEvent();
 	}
 
 	void OnEnable()
 	{
 		controls.Control.Enable();
-	}
-
-	void OnDisable()
-	{
-		controls.Control.Disable();
 	}
 
     void Start()
@@ -34,5 +30,9 @@ public class GameControl : MonoBehaviour
 
 	void PauseEvent() {
 		gameController.PauseMenu();
+	}
+
+	void RestartEvent() {
+		gameController.Restart();
 	}
 }

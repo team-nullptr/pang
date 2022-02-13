@@ -163,6 +163,7 @@ public class GameController : MonoBehaviour
 			// Display the points information
 			if(scoreText != null) {
 				// I seriously don't want to do this like that, but it would be too much work to change it
+				// TODO: Change it
 				scoreText.text =
 					"Score: " + pointsManager.Score.ToString() +
 					"\nAdditional points for time: " + pointsForTime.ToString() +

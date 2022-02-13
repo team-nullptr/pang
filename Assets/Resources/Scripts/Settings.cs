@@ -10,10 +10,10 @@ public class Settings
 		{
 			if (!PlayerPrefs.HasKey("MusicVolume"))
 			{
-				PlayerPrefs.SetFloat("MusicVolume", 1f);
+				PlayerPrefs.SetFloat("MusicVolume", 0.5f);
 			}
 
-			return PlayerPrefs.GetFloat("MusicVolume", 1f);
+			return PlayerPrefs.GetFloat("MusicVolume", 0.5f);
 		}
 		set
 		{
@@ -29,10 +29,10 @@ public class Settings
 		{
 			if (!PlayerPrefs.HasKey("SfxVolume"))
 			{
-				PlayerPrefs.SetFloat("SfxVolume", 1f);
+				PlayerPrefs.SetFloat("SfxVolume", 0.5f);
 			}
 
-			return PlayerPrefs.GetFloat("SfxVolume", 1f);
+			return PlayerPrefs.GetFloat("SfxVolume", 0.5f);
 		}
 		set
 		{
