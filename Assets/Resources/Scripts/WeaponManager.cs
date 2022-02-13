@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
 	public KeyCode fireKey = KeyCode.Space;
-	public BoxCollider2D bulletPrefab;
+	public Collider2D bulletPrefab;
 	/// <summary>
 	/// The maximum number of bullets that can be on the screen at once.
 	/// </summary>
@@ -73,7 +73,7 @@ public class WeaponManager : MonoBehaviour
 			return;
 
 		// Create a new bullet.
-		BoxCollider2D bulletCollider = Instantiate(
+		Collider2D bulletCollider = Instantiate(
 			bulletPrefab,
 			transform.position - new Vector3(0f, collider.bounds.extents.y, 0f),
 			Quaternion.identity

@@ -9345,6 +9345,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 323071565309939564, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5242807676069474458, guid: 52def3aa03d28de4f8a7a85c710b8a09, type: 3}
+    - target: {fileID: 323071565309939564, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
+      propertyPath: maxBulletCount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
 --- !u!1001 &4878545249502272278

@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class BulletDestruction : MonoBehaviour
 {
 	AudioSource bulletBreakingSound, brickBreakingSound;
-	new BoxCollider2D collider;
+	new Collider2D collider;
 
 	void Start() {
 		// Get the bullet breaking sound
@@ -22,7 +22,7 @@ public class BulletDestruction : MonoBehaviour
 			brickBreakingSound = brickBreakingSoundObject.GetComponent<AudioSource>();
 
 		// Get the bullet collider
-		collider = GetComponent<BoxCollider2D>();
+		collider = GetComponent<Collider2D>();
 	}
 
     void FixedUpdate()
