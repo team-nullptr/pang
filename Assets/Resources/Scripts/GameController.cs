@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
 
 	PointsManager pointsManager;
 	PlayerManager playerManager;
-	bool gameOver = false, countdownFinished = false;
+	bool gameOver = false, countdownFinished = false, win = false;
 
 	public void Pause()
 	{
@@ -158,7 +158,6 @@ public class GameController : MonoBehaviour
 			int pointsForHp = 0;
 			if(playerManager != null)
 				pointsForHp = (playerManager.hp - 1) * 500;
-			PointsManager.TotalScore += pointsManager.Score + pointsForTime + pointsForHp;
 
 			// Display the points information
 			if(scoreText != null) {
@@ -168,7 +167,7 @@ public class GameController : MonoBehaviour
 					"Score: " + pointsManager.Score.ToString() +
 					"\nAdditional points for time: " + pointsForTime.ToString() +
 					"\nAdditional points for HP: " + pointsForHp.ToString() +
-					"\nTotal score: " + PointsManager.TotalScore.ToString();
+					"\nTotal score: " + (PointsManager.TotalScore + pointsManager.Score + pointsForTime + pointsForHp).ToString();
 			}
 		}
 
@@ -176,6 +175,7 @@ public class GameController : MonoBehaviour
 		Pause();
 
 		gameOver = true;
+		win = true;
 	}
 
 	public void Lose()
@@ -198,11 +198,25 @@ public class GameController : MonoBehaviour
 
 	public void NextLevel()
 	{
+		if(!win)
+			return;
+		
+		if(pointsManager != null) {
+			// Count additional points for time and hp
+			int pointsForTime = (int)timer * 100;
+			int pointsForHp = 0;
+			if(playerManager != null)
+				pointsForHp = (playerManager.hp - 1) * 500;
+
+			PointsManager.TotalScore += pointsManager.Score + pointsForTime + pointsForHp;
+		}
+
 		SceneManager.LoadScene(nextLevel);
 	}
 
 	public void PauseMenu() {
-		if(gameOver)
+		// If the game is over or during the countdown, do nothing
+		if(gameOver || countdown > 0)
 			return;
 
 		// If the game is paused, resume it

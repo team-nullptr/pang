@@ -211,6 +211,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""NextLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""6daffcf9-f5b0-44cc-ae15-041b5f243d1e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -257,6 +265,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82942479-9916-408b-8966-59e4a0e9a584"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4b38500-434a-440b-aeea-dac1869f705c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +301,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Control = asset.FindActionMap("Control", throwIfNotFound: true);
         m_Control_Pause = m_Control.FindAction("Pause", throwIfNotFound: true);
         m_Control_Restart = m_Control.FindAction("Restart", throwIfNotFound: true);
+        m_Control_NextLevel = m_Control.FindAction("NextLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -363,12 +394,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IControlActions m_ControlActionsCallbackInterface;
     private readonly InputAction m_Control_Pause;
     private readonly InputAction m_Control_Restart;
+    private readonly InputAction m_Control_NextLevel;
     public struct ControlActions
     {
         private @PlayerControls m_Wrapper;
         public ControlActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_Control_Pause;
         public InputAction @Restart => m_Wrapper.m_Control_Restart;
+        public InputAction @NextLevel => m_Wrapper.m_Control_NextLevel;
         public InputActionMap Get() { return m_Wrapper.m_Control; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -384,6 +417,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Restart.started -= m_Wrapper.m_ControlActionsCallbackInterface.OnRestart;
                 @Restart.performed -= m_Wrapper.m_ControlActionsCallbackInterface.OnRestart;
                 @Restart.canceled -= m_Wrapper.m_ControlActionsCallbackInterface.OnRestart;
+                @NextLevel.started -= m_Wrapper.m_ControlActionsCallbackInterface.OnNextLevel;
+                @NextLevel.performed -= m_Wrapper.m_ControlActionsCallbackInterface.OnNextLevel;
+                @NextLevel.canceled -= m_Wrapper.m_ControlActionsCallbackInterface.OnNextLevel;
             }
             m_Wrapper.m_ControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -394,6 +430,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Restart.started += instance.OnRestart;
                 @Restart.performed += instance.OnRestart;
                 @Restart.canceled += instance.OnRestart;
+                @NextLevel.started += instance.OnNextLevel;
+                @NextLevel.performed += instance.OnNextLevel;
+                @NextLevel.canceled += instance.OnNextLevel;
             }
         }
     }
@@ -407,5 +446,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnPause(InputAction.CallbackContext context);
         void OnRestart(InputAction.CallbackContext context);
+        void OnNextLevel(InputAction.CallbackContext context);
     }
 }

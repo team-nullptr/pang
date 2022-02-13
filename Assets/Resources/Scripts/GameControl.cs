@@ -13,6 +13,7 @@ public class GameControl : MonoBehaviour
 
 		controls.Control.Pause.performed += ctx => PauseEvent();
 		controls.Control.Restart.performed += ctx => RestartEvent();
+		controls.Control.NextLevel.performed += ctx => NextLevelEvent();
 	}
 
 	void OnEnable()
@@ -20,12 +21,14 @@ public class GameControl : MonoBehaviour
 		controls.Control.Enable();
 	}
 
+	void OnDisable() {
+		controls.Control.Disable();
+	}
+
     void Start()
     {
 		// Get the GameController
-        GameObject gameControllerObject = GameObject.Find("GameController");
-		if (gameControllerObject != null)
-			gameController = gameControllerObject.GetComponent<GameController>();
+		gameController = GetComponent<GameController>();
     }
 
 	void PauseEvent() {
@@ -34,5 +37,9 @@ public class GameControl : MonoBehaviour
 
 	void RestartEvent() {
 		gameController.Restart();
+	}
+
+	void NextLevelEvent() {
+		gameController.NextLevel();
 	}
 }

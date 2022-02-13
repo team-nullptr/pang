@@ -2870,6 +2870,7 @@ GameObject:
   - component: {fileID: 8669124877267977182}
   - component: {fileID: 8519871611582316657}
   - component: {fileID: 436479843969955487}
+  - component: {fileID: 7209860762022978072}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -2944,6 +2945,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsText: {fileID: 8295670287027973792}
+--- !u!114 &7209860762022978072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669124877267977177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e995ec90a09da944588bc22866fcaf28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8669124877309462220
 GameObject:
   m_ObjectHideFlags: 0
