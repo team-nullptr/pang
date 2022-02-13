@@ -30,6 +30,10 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	public GameObject loseMenu;
 	/// <summary>
+	/// The menu to be shown after the player pauses.
+	/// </summary>
+	public GameObject pauseMenu;
+	/// <summary>
 	/// The level music.
 	/// </summary>
 	public AudioSource music;
@@ -154,5 +158,28 @@ public class GameController : MonoBehaviour
 	public void NextLevel()
 	{
 		SceneManager.LoadScene(nextLevel);
+	}
+
+	public void PauseMenu() {
+		if(gameOver)
+			return;
+
+		// If the game is paused, resume it
+		if(GameState.paused) {
+			Resume();
+
+			if(pauseMenu != null)
+				pauseMenu.SetActive(false);
+
+			return;
+		}
+
+		if(pauseMenu == null)
+			return;
+
+		// If the game is not paused, pause it
+		Pause();
+
+		pauseMenu.SetActive(true);
 	}
 }

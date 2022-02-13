@@ -191,6 +191,44 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Control"",
+            ""id"": ""99aa0d75-169c-4dc4-8eb3-c5fe4dfb065e"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b483e7f-ae08-4901-b07b-cd51f90fee81"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""85f10142-6b09-4bed-a80b-4bb10218bbc1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37a08595-3134-462e-951e-2e4c4512414d"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -199,6 +237,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        // Control
+        m_Control = asset.FindActionMap("Control", throwIfNotFound: true);
+        m_Control_Pause = m_Control.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -285,9 +326,46 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Control
+    private readonly InputActionMap m_Control;
+    private IControlActions m_ControlActionsCallbackInterface;
+    private readonly InputAction m_Control_Pause;
+    public struct ControlActions
+    {
+        private @PlayerControls m_Wrapper;
+        public ControlActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_Control_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Control; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ControlActions set) { return set.Get(); }
+        public void SetCallbacks(IControlActions instance)
+        {
+            if (m_Wrapper.m_ControlActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_ControlActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_ControlActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_ControlActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_ControlActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public ControlActions @Control => new ControlActions(this);
     public interface IGameplayActions
     {
         void OnShoot(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface IControlActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }
