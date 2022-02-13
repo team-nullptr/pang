@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-	public KeyCode fireKey = KeyCode.Space;
 	public Collider2D bulletPrefab;
 	/// <summary>
 	/// The maximum number of bullets that can be on the screen at once.
