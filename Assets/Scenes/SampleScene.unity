@@ -6509,10 +6509,10 @@ PrefabInstance:
     - target: {fileID: 323071565309939564, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 116554006836849939, guid: ee01bd28a99c43a4bbccfa953d9bbdae, type: 3}
+      objectReference: {fileID: 1700926973533496192, guid: bdb2ccf8019f35547a13775301f87800, type: 3}
     - target: {fileID: 323071565309939564, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
       propertyPath: maxBulletCount
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a676fe4fd863c34499c6611dcaa88eac, type: 3}
