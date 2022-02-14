@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Settings
+public static class Settings
 {
 	public static float MusicVolume
 	{
@@ -70,6 +70,4 @@ public class Settings
 		UpdateMusicVolume();
 		UpdateSfxVolume();
 	}
-
-	private Settings() {}
 }
