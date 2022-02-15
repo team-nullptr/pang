@@ -77,7 +77,7 @@ public class BallManager : MonoBehaviour
 
 	void Start()
 	{
-		GameObject gameControllerObject = GameObject.Find("GameController");
+		GameObject gameControllerObject = GameObject.FindWithTag("GameController");
 		gameController = gameControllerObject.GetComponent<GameController>();
 		pointsManager = gameControllerObject.GetComponent<PointsManager>();
 		ballShotSound = GameObject.Find("BallBreakingSpeaker").GetComponent<AudioSource>();

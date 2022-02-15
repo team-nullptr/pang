@@ -27,7 +27,9 @@ public class PlayerManager : MonoBehaviour
 
 	void Start()
 	{
-		gameController = GameObject.Find("GameController").GetComponent<GameController>();
+		// Get the necessary handles
+		GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+		gameController = gameControllerObject.GetComponent<GameController>();
 		hitSound = GameObject.Find("HitSpeaker").GetComponent<AudioSource>();
 		hpText = GameObject.Find("HpText").GetComponent<Text>();
 

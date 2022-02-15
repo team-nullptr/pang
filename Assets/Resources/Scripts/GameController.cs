@@ -196,20 +196,28 @@ public class GameController : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
+	public void AddScoreToTotal() {
+		if(!win)
+			return;
+
+		if(pointsManager == null)
+			return;
+		
+		// Count additional points for time and hp
+		int pointsForTime = (int)timer * 100;
+		int pointsForHp = 0;
+		if(playerManager != null)
+			pointsForHp = (playerManager.hp - 1) * 500;
+
+		PointsManager.TotalScore += pointsManager.Score + pointsForTime + pointsForHp;
+	}
+
 	public void NextLevel()
 	{
 		if(!win)
 			return;
 		
-		if(pointsManager != null) {
-			// Count additional points for time and hp
-			int pointsForTime = (int)timer * 100;
-			int pointsForHp = 0;
-			if(playerManager != null)
-				pointsForHp = (playerManager.hp - 1) * 500;
-
-			PointsManager.TotalScore += pointsManager.Score + pointsForTime + pointsForHp;
-		}
+		AddScoreToTotal();
 
 		SceneManager.LoadScene(nextLevel);
 	}
