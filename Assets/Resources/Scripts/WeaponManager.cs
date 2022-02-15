@@ -56,7 +56,7 @@ public class WeaponManager : MonoBehaviour
 			return;
 
 		// If the player is above ground, don't shoot.
-		if(!Physics2D.BoxCast(transform.position, collider.size, 0, Vector2.down, 0.1f, LayerMask.GetMask("Terrain")))
+		if(!Physics2D.BoxCast(transform.position, collider.size - new Vector2(0.1f, 0f), 0, Vector2.down, 0.1f, LayerMask.GetMask("Terrain")))
 			return;
 
 		// Count the bullets on scene
