@@ -22,6 +22,23 @@ public class PlayerManager : MonoBehaviour
 
 	GameController gameController;
 	float invulnerabilityTimer;
+	public float InvulnerabilityTimer
+	{
+		get
+		{
+			return invulnerabilityTimer;
+		}
+		set {
+			if(value > invulnerabilityTime)
+			{
+				invulnerabilityTimer = invulnerabilityTime;
+			}
+			else
+			{
+				invulnerabilityTimer = value;
+			}
+		}
+	}
 	AudioSource hitSound;
 	Text hpText;
 
