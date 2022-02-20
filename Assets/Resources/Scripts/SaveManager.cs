@@ -102,6 +102,9 @@ public static class SaveManager
 		int totalScore = int.Parse(fileStream.ReadLine());
 		PointsManager.TotalScore = totalScore;
 
+		// Call the OnLoad event.
+		SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => CallOnLoad();
+
 		// Load the data from objects on the scene.
 		GameObject dummyObject = new GameObject();
 
@@ -120,7 +123,22 @@ public static class SaveManager
 			SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => savable.Load(dataStream);
 		}
 
+		// Destroy the dummy object.
+		GameObject.Destroy(dummyObject);
+
 		fileStream.Close();
+	}
+
+	/// <summary>
+	/// Calls the on load event for all savable objects.
+	/// </summary>
+	static void CallOnLoad() {
+		Savable[] savables = GameObject.FindObjectsOfType<Savable>();
+
+		foreach (Savable savable in savables)
+		{
+			savable.OnLoad();
+		}
 	}
 	
 	/// <summary>

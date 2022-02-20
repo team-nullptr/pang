@@ -18,6 +18,7 @@ public class PlayerSavable : Savable
 		BinaryFormatter binaryFormatter = SaveManager.GetFormatter();
 		MemoryStream memoryStream = new MemoryStream();
 
+		// Get necessary data.
 		PlayerData data = new PlayerData();
 		data.x = transform.position.x;
 		data.y = transform.position.y;
@@ -25,6 +26,7 @@ public class PlayerSavable : Savable
 		data.hp = playerManager.hp;
 		data.invulnerabilityTimer = playerManager.InvulnerabilityTimer;
 
+		// Serialize the data.
 		binaryFormatter.Serialize(memoryStream, data);
 		return memoryStream;
 	}
@@ -53,4 +55,6 @@ public class PlayerSavable : Savable
 		playerManager.hp = data.hp;
 		playerManager.InvulnerabilityTimer = data.invulnerabilityTimer;
 	}
+
+	public override void OnLoad() {}
 }
