@@ -6,8 +6,8 @@ public class SaveInterface : MonoBehaviour
 {
     void Start()
     {
-		StartCoroutine(SaveAfterTime("test", 1));
-		StartCoroutine(LoadAfterTime("test", 2));
+		StartCoroutine(SaveAfterTime("test", 3));
+		StartCoroutine(LoadAfterTime("test", 4));
     }
 
 	IEnumerator SaveAfterTime(string filename, int time) {
