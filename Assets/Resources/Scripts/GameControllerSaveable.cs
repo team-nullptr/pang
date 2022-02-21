@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class GameControllerSaveable : Savable
+public class GameControllerSaveable : Saveable
 {
 	[System.Serializable]
 	struct GameControllerData {

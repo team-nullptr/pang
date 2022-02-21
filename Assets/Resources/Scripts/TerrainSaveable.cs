@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TerrainSaveable : Savable
+public class TerrainSaveable : Saveable
 {
 	[System.Serializable]
 	struct BreakableTile {

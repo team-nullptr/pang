@@ -9,14 +9,20 @@ public class Artifact : MonoBehaviour
 	/// How many points should the player get for collecting the artifact.
 	/// </summary>
 	public int pointsForArtifact = 5000;
-	/// <summary>
-	/// Sound to be played when the artifact is collected.
-	/// </summary>
-	public AudioSource artifactSound;
-	public PointsManager pointsManager;
 	public PointsAnimation pointsPrefab;
 
+	AudioSource artifactSound;
+	PointsManager pointsManager;
+
 	bool collected = false;
+
+	void Start() {
+		pointsManager = FindObjectOfType<PointsManager>();
+
+		GameObject artifactSoundObject = GameObject.Find("ArtifactCollectionSpeaker");
+		if(artifactSoundObject != null)
+			artifactSound = artifactSoundObject.GetComponent<AudioSource>();
+	}
 
     void OnTriggerEnter2D(Collider2D collider) {
 		if(collected)

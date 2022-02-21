@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class BallSavable : Savable
+public class BallSaveable : Saveable
 {
 	[System.Serializable]
 	struct BallData {

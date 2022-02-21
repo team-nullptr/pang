@@ -49,17 +49,17 @@ public static class SaveManager
 
 		// Save the data from objects on the scene.
 
-		Savable[] savables = GameObject.FindObjectsOfType<Savable>();
+		Saveable[] saveables = GameObject.FindObjectsOfType<Saveable>();
 
-		foreach (Savable savable in savables)
+		foreach (Saveable saveable in saveables)
 		{
 			// Save the savable's type.
-			string type = savable.GetType().AssemblyQualifiedName;
+			string type = saveable.GetType().AssemblyQualifiedName;
 
 			fileStream.WriteLine(type);
 
 			// Save the savable's data.
-			MemoryStream dataStream = savable.Save();
+			MemoryStream dataStream = saveable.Save();
 
 			fileStream.WriteLine(SerializeStream(dataStream));
 		}
@@ -113,14 +113,14 @@ public static class SaveManager
 			// Load the savable's type.
 			string type = fileStream.ReadLine();
 
-			Savable savable = (Savable)dummyObject.AddComponent(System.Type.GetType(type));
+			Saveable saveable = (Saveable)dummyObject.AddComponent(System.Type.GetType(type));
 
 			// Load the savable's data.
 			string data = fileStream.ReadLine();
 
 			MemoryStream dataStream = new MemoryStream(System.Convert.FromBase64String(data));
 
-			SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => savable.Load(dataStream);
+			SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => saveable.Load(dataStream);
 		}
 
 		// Destroy the dummy object.
@@ -133,11 +133,11 @@ public static class SaveManager
 	/// Calls the on load event for all savable objects.
 	/// </summary>
 	static void CallOnLoad() {
-		Savable[] savables = GameObject.FindObjectsOfType<Savable>();
+		Saveable[] saveables = GameObject.FindObjectsOfType<Saveable>();
 
-		foreach (Savable savable in savables)
+		foreach (Saveable saveable in saveables)
 		{
-			savable.OnLoad();
+			saveable.OnLoad();
 		}
 	}
 	

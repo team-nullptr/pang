@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class PlayerSavable : Savable
+public class PlayerSaveable : Saveable
 {
 	[System.Serializable]
 	struct PlayerData {
@@ -33,7 +33,7 @@ public class PlayerSavable : Savable
 	public override void Load(MemoryStream saveData) {
 		// Find player's saveable component.
 		GameObject player = GameObject.FindWithTag("Player");
-		PlayerSavable currentSavable = player.GetComponent<PlayerSavable>();
+		PlayerSaveable currentSavable = player.GetComponent<PlayerSaveable>();
 
 		// Deserialize the data.
 		BinaryFormatter binaryFormatter = SaveManager.GetFormatter();
