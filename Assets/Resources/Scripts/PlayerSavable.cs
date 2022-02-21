@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerSavable : Savable
 {
@@ -18,7 +17,7 @@ public class PlayerSavable : Savable
 		BinaryFormatter binaryFormatter = SaveManager.GetFormatter();
 		MemoryStream memoryStream = new MemoryStream();
 
-		// Get necessary data.
+		// Get the necessary data.
 		PlayerData data = new PlayerData();
 		data.x = transform.position.x;
 		data.y = transform.position.y;
