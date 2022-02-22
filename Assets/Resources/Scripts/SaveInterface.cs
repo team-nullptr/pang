@@ -24,9 +24,4 @@ public class SaveInterface : MonoBehaviour
 		SaveManager.Save(filename);
 		SaveManager.Load(filename);
 	}
-
-    void Update()
-    {
-        
-    }
 }

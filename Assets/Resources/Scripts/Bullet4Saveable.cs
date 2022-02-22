@@ -4,12 +4,13 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class BulletSaveable : Saveable
+public class Bullet4Saveable : Saveable
 {
 	[System.Serializable]
 	struct BulletData {
 		public float x, y;
-		public float startingPoint;
+		public float xVelocity, yVelocity;
+		public float lifeTime;
 	}
 
     public override MemoryStream Save()
@@ -21,18 +22,19 @@ public class BulletSaveable : Saveable
 		BulletData data = new BulletData();
 		data.x = transform.position.x;
 		data.y = transform.position.y;
-		Bullet bullet = GetComponent<Bullet>();
-		data.startingPoint = (float)bullet.startingPoint;
-		binaryFormatter.Serialize(memoryStream, data);
+		Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+		data.xVelocity = rigidbody.velocity.x;
+		data.yVelocity = rigidbody.velocity.y;
+		data.lifeTime = GetComponent<Bullet4>().lifeTime;
 
+		binaryFormatter.Serialize(memoryStream, data);
 		return memoryStream;
 	}
 
 	public override void Load(MemoryStream stream)
 	{
-		// Deserialize the data.
+		// Read the data and deserialize it.
 		BinaryFormatter binaryFormatter = SaveManager.GetFormatter();
-		stream.Position = 0;
 		BulletData data = (BulletData)binaryFormatter.Deserialize(stream);
 
 		// Get the bullet prefab.
@@ -40,13 +42,13 @@ public class BulletSaveable : Saveable
 
 		GameObject bulletPrefab = weaponManager.bulletPrefab.gameObject;
 
-		// Reconstruct the object.
-		GameObject bulletObject = Instantiate(bulletPrefab);
-		bulletObject.transform.position = new Vector3(data.x, data.y, 0);
-		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.startingPoint = data.startingPoint;
+		// Instantiate the bullet.
+		GameObject bullet = Instantiate(bulletPrefab) as GameObject;
 
-		// FIXME: A bullet sometimes moves a bit upwards or left when it is loaded.
+		// Set the position and velocity.
+		bullet.transform.position = new Vector3(data.x, data.y, 0);
+		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(data.xVelocity, data.yVelocity);
+		bullet.GetComponent<Bullet4>().lifeTime = data.lifeTime;
 	}
 
 	public override void OnLoad() {

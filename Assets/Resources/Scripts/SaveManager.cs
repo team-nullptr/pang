@@ -25,6 +25,10 @@ public static class SaveManager
 	/// <param name="filename">The name of the save file.</param>
     public static void Save(string filename)
 	{
+		// Pause the game.
+		GameController gameController = GameObject.FindObjectsOfType<GameController>()[0];
+		gameController.Pause();
+
 		// Open the save file.
 		string path = Application.persistentDataPath + "/" + SaveDirectory;
 
