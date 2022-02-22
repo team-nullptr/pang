@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2533638805729192151}
   - component: {fileID: 3331980838720672172}
   - component: {fileID: 8229806181238705521}
+  - component: {fileID: 503260726372031500}
   m_Layer: 9
   m_Name: Bullet3
   m_TagString: Bullet
@@ -129,6 +130,7 @@ MonoBehaviour:
   bulletSpeed: 5
   trailSpriteRenderer: {fileID: 2937366011928943195}
   trailBoxCollider2D: {fileID: 6545781882862318778}
+  startingPoint: 0
 --- !u!114 &2533638805729192151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +183,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &503260726372031500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132839219405639040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a41a7c0083e14b9fe2b57e2b3e5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3021240813469044809
 GameObject:
   m_ObjectHideFlags: 0

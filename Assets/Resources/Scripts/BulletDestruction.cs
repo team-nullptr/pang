@@ -46,7 +46,7 @@ public class BulletDestruction : MonoBehaviour
 
 			// If the bullet collides from the bottom, ignore it
 			if(collisionPoint.y < transform.position.y)
-				return;
+				continue;
 
 			// If the bullet collides with a breakable brick, break it
 			Tilemap tilemap = collision.gameObject.GetComponentInParent<Tilemap>();

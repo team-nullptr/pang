@@ -6,8 +6,7 @@ public class SaveInterface : MonoBehaviour
 {
     void Start()
     {
-		StartCoroutine(SaveAfterTime("test", 3));
-		StartCoroutine(LoadAfterTime("test", 4));
+		StartCoroutine(SaveAndLoadAfterTime("test", 3));
     }
 
 	IEnumerator SaveAfterTime(string filename, int time) {
@@ -17,6 +16,12 @@ public class SaveInterface : MonoBehaviour
 
 	IEnumerator LoadAfterTime(string filename, int time) {
 		yield return new WaitForSeconds(time);
+		SaveManager.Load(filename);
+	}
+
+	IEnumerator SaveAndLoadAfterTime(string filename, int time) {
+		yield return new WaitForSeconds(time);
+		SaveManager.Save(filename);
 		SaveManager.Load(filename);
 	}
 

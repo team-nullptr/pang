@@ -4,11 +4,16 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+
+using LoadFunction = UnityEngine.Events.UnityAction<UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode>;
 
 public static class SaveManager
 {
 	public const string SaveDirectory = "saves/";
 	public const string Version = "1.0";
+
+	static List<LoadFunction> loadFunctions = new List<LoadFunction>();
 
 	static string SerializeStream(MemoryStream stream) {
 		return System.Convert.ToBase64String(stream.ToArray());
@@ -103,7 +108,9 @@ public static class SaveManager
 		PointsManager.TotalScore = totalScore;
 
 		// Call the OnLoad event.
-		SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => CallOnLoad();
+		LoadFunction onLoad = (Scene scene, LoadSceneMode mode) => CallOnLoad();
+		loadFunctions.Add(onLoad);
+		SceneManager.sceneLoaded += onLoad;
 
 		// Load the data from objects on the scene.
 		GameObject dummyObject = new GameObject();
@@ -120,13 +127,29 @@ public static class SaveManager
 
 			MemoryStream dataStream = new MemoryStream(System.Convert.FromBase64String(data));
 
-			SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => saveable.Load(dataStream);
+			LoadFunction loadFunction = (Scene scene, LoadSceneMode mode) => saveable.Load(dataStream);
+			loadFunctions.Add(loadFunction);
+			SceneManager.sceneLoaded += loadFunction;
 		}
 
 		// Destroy the dummy object.
 		GameObject.Destroy(dummyObject);
 
+		// After loading all the objects into a new scene, clear the SceneManager's sceneLoaded event.
+		LoadFunction clearLoadFunction = (Scene scene, LoadSceneMode mode) => ClearLoadFunctions();
+		loadFunctions.Add(clearLoadFunction);
+		SceneManager.sceneLoaded += clearLoadFunction;
+
 		fileStream.Close();
+	}
+
+	static void ClearLoadFunctions() {
+		foreach (LoadFunction loadFunction in loadFunctions)
+		{
+			SceneManager.sceneLoaded -= loadFunction;
+		}
+
+		loadFunctions.Clear();
 	}
 
 	/// <summary>

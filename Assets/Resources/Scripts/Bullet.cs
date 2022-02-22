@@ -11,17 +11,18 @@ public class Bullet : MonoBehaviour
 	public SpriteRenderer trailSpriteRenderer;
 	public BoxCollider2D trailBoxCollider2D;
 	
-	float startingPoint;
+	public float? startingPoint = null;
 	float trailColiderWidth;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		// Save the starting point of the bullet
-		startingPoint = transform.position.y;
+		if(startingPoint == null)
+			startingPoint = (float?)transform.position.y;
 
 		// Get the width of the trail collider
-		trailColiderWidth = trailBoxCollider2D.bounds.size.x;
+		trailColiderWidth = 2 * trailBoxCollider2D.bounds.size.x;
 	}
 
 	// Update is called once per frame
@@ -30,7 +31,7 @@ public class Bullet : MonoBehaviour
 		// Update bullet head position
 		transform.position = new Vector2(transform.position.x, transform.position.y + bulletSpeed * Time.deltaTime);
 
-		float scaleY = (transform.position.y - startingPoint) / trailColiderWidth;
+		float scaleY = (transform.position.y - (float)startingPoint) / (trailColiderWidth / 2);
 
 		// Make trail longer
 		trailSpriteRenderer.size = new Vector2(
