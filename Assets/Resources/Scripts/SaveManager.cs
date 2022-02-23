@@ -10,7 +10,7 @@ using LoadFunction = UnityEngine.Events.UnityAction<UnityEngine.SceneManagement.
 
 public static class SaveManager
 {
-	public const string SaveDirectory = "saves/";
+	const string SaveDirectory = "saves/";
 	public const string Version = "1.0";
 
 	static List<LoadFunction> loadFunctions = new List<LoadFunction>();
@@ -30,7 +30,7 @@ public static class SaveManager
 		gameController.Pause();
 
 		// Open the save file.
-		string path = Application.persistentDataPath + "/" + SaveDirectory;
+		string path = GetSaveDirectory();
 
 		if (!Directory.Exists(path))
 		{
@@ -80,14 +80,16 @@ public static class SaveManager
 	/// Loads the save data from a file.
 	/// </summary>
 	/// <param name="filename">The name of the save file.</param>
-	public static void Load(string filename) {
+	/// <returns>True if the load was successful, false otherwise.</returns>
+	///
+	public static bool Load(string filename) {
 		// Load the save file.
-		string path = Application.persistentDataPath + "/" + SaveDirectory + filename;
+		string path = GetSaveDirectory() + filename;
 
 		if (!File.Exists(path))
 		{
 			Debug.LogError("Save file not found: " + path);
-			return;
+			return false;
 		}
 
 		BinaryFormatter binaryFormatter = GetFormatter();
@@ -100,7 +102,7 @@ public static class SaveManager
 		if (version != Version)
 		{
 			Debug.LogError("Save file version mismatch: " + version + " != " + Version);
-			return;
+			return false;
 		}
 
 		// Load the current level.
@@ -145,6 +147,8 @@ public static class SaveManager
 		SceneManager.sceneLoaded += clearLoadFunction;
 
 		fileStream.Close();
+
+		return true;
 	}
 
 	static void ClearLoadFunctions() {
@@ -175,5 +179,12 @@ public static class SaveManager
 		BinaryFormatter formatter = new BinaryFormatter();
 
 		return formatter;
+	}
+
+	/// <summary>
+	/// Returns the directory where save files are stored.
+	/// </summary>
+	public static string GetSaveDirectory() {
+		return Application.persistentDataPath + "/" + SaveDirectory;
 	}
 }

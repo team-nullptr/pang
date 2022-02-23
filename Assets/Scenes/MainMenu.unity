@@ -10265,6 +10265,7 @@ GameObject:
   - component: {fileID: 1039935376}
   - component: {fileID: 1039935375}
   - component: {fileID: 1039935374}
+  - component: {fileID: 1039935377}
   m_Layer: 5
   m_Name: Slot3Button
   m_TagString: Untagged
@@ -10386,6 +10387,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039935372}
   m_CullTransparentMesh: 1
+--- !u!114 &1039935377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039935372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477119a812ef7c74284e630097bdd7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: slot3
 --- !u!1 &1090820327
 GameObject:
   m_ObjectHideFlags: 0
@@ -13777,7 +13791,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1566097217}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 595910643}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: EnableMenu
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 803593729}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1566097217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17154,6 +17180,7 @@ GameObject:
   - component: {fileID: 2098431218}
   - component: {fileID: 2098431217}
   - component: {fileID: 2098431216}
+  - component: {fileID: 2098431219}
   m_Layer: 5
   m_Name: Slot2Button
   m_TagString: Untagged
@@ -17275,6 +17302,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098431214}
   m_CullTransparentMesh: 1
+--- !u!114 &2098431219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098431214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477119a812ef7c74284e630097bdd7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: slot2
 --- !u!1 &2116229691
 GameObject:
   m_ObjectHideFlags: 0
@@ -17366,6 +17406,7 @@ GameObject:
   - component: {fileID: 2134526151}
   - component: {fileID: 2134526150}
   - component: {fileID: 2134526149}
+  - component: {fileID: 2134526152}
   m_Layer: 5
   m_Name: Slot1Button
   m_TagString: Untagged
@@ -17487,3 +17528,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134526147}
   m_CullTransparentMesh: 1
+--- !u!114 &2134526152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134526147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477119a812ef7c74284e630097bdd7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: slot1
