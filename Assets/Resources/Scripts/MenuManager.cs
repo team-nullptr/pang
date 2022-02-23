@@ -38,6 +38,13 @@ public class MenuManager : MonoBehaviour
 		}
 	}
 
+	public void CloseAllMenus() {
+		foreach (GameObject _menu in menus)
+		{
+			_menu.SetActive(false);
+		}
+	}
+
 	public void QuitGame()
 	{
 		Application.Quit();

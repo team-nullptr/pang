@@ -56,6 +56,7 @@ public class GameController : MonoBehaviour
 
 	PointsManager pointsManager;
 	PlayerManager playerManager;
+	MenuManager menuManager;
 	bool gameOver = false, countdownFinished = false, win = false;
 
 	public void Pause()
@@ -89,6 +90,11 @@ public class GameController : MonoBehaviour
 
 		if (player != null)
 			playerManager = player.GetComponent<PlayerManager>();
+
+		// Get the menu manager
+		GameObject menuManagerObject = GameObject.Find("MenuManager");
+		if(menuManagerObject != null)
+			menuManager = menuManagerObject.GetComponent<MenuManager>();
 
 		// Start a countdown
 		if(!gameOver)
@@ -239,8 +245,7 @@ public class GameController : MonoBehaviour
 		if(GameState.paused) {
 			Resume();
 
-			if(pauseMenu != null)
-				pauseMenu.SetActive(false);
+			menuManager.CloseAllMenus();
 
 			return;
 		}
