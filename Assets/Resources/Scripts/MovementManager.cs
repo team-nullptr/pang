@@ -16,6 +16,8 @@ public class MovementManager : MonoBehaviour
 	new Rigidbody2D rigidbody;
 	new CapsuleCollider2D collider;
 	PlayerControls controls;
+	Animator animator;
+	SpriteRenderer spriteRenderer;
 	Vector2 movement;
 	bool isOnLadder = false;
 
@@ -41,6 +43,8 @@ public class MovementManager : MonoBehaviour
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
 		collider = GetComponent<CapsuleCollider2D>();
+		animator = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
@@ -78,6 +82,16 @@ public class MovementManager : MonoBehaviour
 		{
 			transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - collider.bounds.extents.x, transform.position.y, transform.position.z);
 		}
+
+		// Set animator values
+		if(movement.x != 0) {
+			animator.SetBool("walking", true);
+
+			// Make player face the direction of movement
+			spriteRenderer.flipX = movement.x < 0;
+		}
+		else
+			animator.SetBool("walking", false);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
