@@ -89,7 +89,13 @@ public class GameController : MonoBehaviour
 			playerManager = player.GetComponent<PlayerManager>();
 
 		// Start a countdown
-		Pause();
+		if(!gameOver)
+			Pause();
+		else {
+			countdownFinished = true;
+			countdownText.text = "";
+			countdown = 0;
+		}
 	}
 
 	void Update()
@@ -244,5 +250,27 @@ public class GameController : MonoBehaviour
 		Pause();
 
 		pauseMenu.SetActive(true);
+	}
+
+	public enum GameResult
+	{
+		InProgress,
+		Won,
+		Lost
+	}
+
+	/// <summary>
+	/// Shows whether the game is won, lost or in progress.
+	/// </summary>
+	/// <returns>The result of the game.</returns>
+	public GameResult GetGameResult() {
+		if(gameOver) {
+			if(win)
+				return GameResult.Won;
+			else
+				return GameResult.Lost;
+		}
+
+		return GameResult.InProgress;
 	}
 }

@@ -10,6 +10,7 @@ public class GameControllerSaveable : Saveable
 	struct GameControllerData {
 		public int score, totalScore;
 		public float timer;
+		public GameController.GameResult result;
 	}
     public override MemoryStream Save()
 	{
@@ -23,7 +24,7 @@ public class GameControllerSaveable : Saveable
 		data.totalScore = PointsManager.TotalScore;
 		data.score = pointsManager.Score;
 		data.timer = gameController.timer;
-
+		data.result = gameController.GetGameResult();
 
 		// Serialize the data.
 		binaryFormatter.Serialize(memoryStream, data);
@@ -46,6 +47,23 @@ public class GameControllerSaveable : Saveable
 		PointsManager pointsManager = gameControllerObject.GetComponent<PointsManager>();
 		pointsManager.Score = data.score;
 		gameController.timer = data.timer;
+
+		// Update the game result.
+		switch (data.result) {
+			case GameController.GameResult.InProgress:
+				gameController.Resume();
+				break;
+
+			case GameController.GameResult.Won:
+				gameController.Win();
+				break;
+
+			case GameController.GameResult.Lost:
+				gameController.Lose();
+				GameObject player = GameObject.FindWithTag("Player");
+				Destroy(player);
+				break;
+		}
 	}
 
 	public override void OnLoad() {}
