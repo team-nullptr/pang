@@ -4,24 +4,13 @@ using UnityEngine;
 
 public class SaveInterface : MonoBehaviour
 {
-    void Start()
-    {
-		StartCoroutine(SaveAndLoadAfterTime("test", 3));
-    }
-
-	IEnumerator SaveAfterTime(string filename, int time) {
-		yield return new WaitForSeconds(time);
+	public void Save(string filename)
+	{
 		SaveManager.Save(filename);
 	}
 
-	IEnumerator LoadAfterTime(string filename, int time) {
-		yield return new WaitForSeconds(time);
-		SaveManager.Load(filename);
-	}
-
-	IEnumerator SaveAndLoadAfterTime(string filename, int time) {
-		yield return new WaitForSeconds(time);
-		SaveManager.Save(filename);
+	public void Load(string filename)
+	{
 		SaveManager.Load(filename);
 	}
 }
