@@ -48,7 +48,10 @@ public class Bullet4Saveable : Saveable
 		// Set the position and velocity.
 		bullet.transform.position = new Vector3(data.x, data.y, 0);
 		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(data.xVelocity, data.yVelocity);
-		bullet.GetComponent<Bullet4>().lifeTime = data.lifeTime;
+		Bullet4 bulletComponent = bullet.GetComponent<Bullet4>();
+		// So that the bullet doesn't jump when loaded.
+		bulletComponent.shotForce = 0f;
+		bulletComponent.lifeTime = data.lifeTime;
 	}
 
 	public override void OnLoad() {
