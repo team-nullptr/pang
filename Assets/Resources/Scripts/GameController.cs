@@ -70,6 +70,11 @@ public class GameController : MonoBehaviour
 		GameState.paused = false;
 	}
 
+	void Awake() {
+		// Get the points manager
+		pointsManager = GetComponent<PointsManager>();
+	}
+
 	void Start()
 	{
 		// Set the timer text to the timer value
@@ -78,9 +83,6 @@ public class GameController : MonoBehaviour
 			TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
 			timerText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
 		}
-
-		// Get the points manager
-		pointsManager = GetComponent<PointsManager>();
 
 		// Get the player manager
 		GameObject player = GameObject.Find("Player");
