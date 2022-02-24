@@ -19,6 +19,10 @@ public class PlayerManager : MonoBehaviour
 	/// The animation to be played after the player gets hit.
 	/// </summary>
 	public Animation hitAnimation;
+	/// <summary>
+	/// The image of heart prefab.
+	/// </summary>
+	public GameObject heartImage;
 
 	GameController gameController;
 	float invulnerabilityTimer;
@@ -40,7 +44,7 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 	AudioSource hitSound;
-	Text hpText;
+	GameObject hpUI;
 
 	void Start()
 	{
@@ -48,10 +52,10 @@ public class PlayerManager : MonoBehaviour
 		GameObject gameControllerObject = GameObject.FindWithTag("GameController");
 		gameController = gameControllerObject.GetComponent<GameController>();
 		hitSound = GameObject.Find("HitSpeaker").GetComponent<AudioSource>();
-		hpText = GameObject.Find("HpText").GetComponent<Text>();
+		hpUI = GameObject.Find("HpUI");
 
-		// Set the HP text to the current hp.
-		hpText.text = hp.ToString();
+		// Update the HP UI
+		UpdateHpUI();
 
 		// Set the hit animation duration to the invulnerability time.
 		foreach (AnimationState state in hitAnimation)
@@ -80,10 +84,7 @@ public class PlayerManager : MonoBehaviour
 			return false;
 
 		hp--;
-		if (hpText != null)
-		{
-			hpText.text = hp.ToString();
-		}
+		UpdateHpUI();
 
 		if (hitSound != null)
 		{
@@ -110,5 +111,23 @@ public class PlayerManager : MonoBehaviour
 		Destroy(gameObject);
 
 		gameController.Lose();
+	}
+
+	void UpdateHpUI() {
+		if(hpUI == null)
+			return;
+		
+		// Destroy all the hearts
+		foreach(Transform child in hpUI.transform)
+		{
+			Destroy(child.gameObject);
+		}
+
+		// Add hearts
+		for(int i = 0; i < hp; i++)
+		{
+			GameObject heart = Instantiate(heartImage);
+			heart.transform.SetParent(hpUI.transform);
+		}
 	}
 }

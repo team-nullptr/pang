@@ -172,6 +172,7 @@ MonoBehaviour:
   deathParticles: {fileID: 3878128322642938220, guid: 05628f14c9bb8b44d99992940f60e1aa, type: 3}
   hp: 3
   hitAnimation: {fileID: 4017546353423356249}
+  heartImage: {fileID: 6835896182045732238, guid: a0c72d460673eb746911d62e82573204, type: 3}
 --- !u!111 &4017546353423356249
 Animation:
   m_ObjectHideFlags: 0
