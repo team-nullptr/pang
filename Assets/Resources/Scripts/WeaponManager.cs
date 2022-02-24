@@ -17,6 +17,7 @@ public class WeaponManager : MonoBehaviour
 	AudioSource shotSound;
 	PlayerControls controls;
 	MovementManager movement;
+	Animator animator;
 
 	// INPUT
 
@@ -47,6 +48,9 @@ public class WeaponManager : MonoBehaviour
 
 		// Get the bullet shot sound
 		shotSound = GameObject.Find("ShotSpeaker").GetComponent<AudioSource>();
+
+		// Get the player animator
+		animator = GetComponent<Animator>();
 	}
 
 	void Shoot()
@@ -84,5 +88,9 @@ public class WeaponManager : MonoBehaviour
 		// Play the shot sound.
 		if (shotSound != null)
 			shotSound.Play();
+		
+		// Play the shot animation.
+		if(animator != null)
+			animator.SetTrigger("shot");
 	}
 }
