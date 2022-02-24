@@ -88,7 +88,8 @@ public class MovementManager : MonoBehaviour
 			animator.SetBool("walking", true);
 
 			// Make player face the direction of movement
-			spriteRenderer.flipX = movement.x < 0;
+			if(!GameState.paused)
+				spriteRenderer.flipX = movement.x < 0;
 		}
 		else
 			animator.SetBool("walking", false);
@@ -119,8 +120,6 @@ public class MovementManager : MonoBehaviour
 
 		foreach(ContactPoint2D contact in contacts)
 		{
-			Debug.Log(contact.normal);
-
 			if(contact.normal.y == 1)
 				return true;
 		}
