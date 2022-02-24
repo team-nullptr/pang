@@ -92,6 +92,14 @@ public class MovementManager : MonoBehaviour
 		}
 		else
 			animator.SetBool("walking", false);
+
+		if(isOnLadder) {
+			animator.SetBool("climbing", true);
+
+			animator.SetFloat("climbingPerformed", movement.y);
+		}
+		else
+			animator.SetBool("climbing", false);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
