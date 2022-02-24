@@ -19,7 +19,7 @@ public class MovementManager : MonoBehaviour
 	Animator animator;
 	SpriteRenderer spriteRenderer;
 	Vector2 movement;
-	bool isOnLadder = false;
+	bool isOnLadder = false, isClimbing = false;
 
 	void Awake()
 	{
@@ -93,7 +93,7 @@ public class MovementManager : MonoBehaviour
 		else
 			animator.SetBool("walking", false);
 
-		if(isOnLadder) {
+		if(isClimbing) {
 			animator.SetBool("climbing", true);
 
 			animator.SetFloat("climbingPerformed", movement.y);
@@ -113,11 +113,35 @@ public class MovementManager : MonoBehaviour
 		}
 	}
 
+	bool IsGrounded() {
+		List<ContactPoint2D> contacts = new List<ContactPoint2D>();
+		collider.GetContacts(contacts);
+
+		foreach(ContactPoint2D contact in contacts)
+		{
+			Debug.Log(contact.normal);
+
+			if(contact.normal.y == 1)
+				return true;
+		}
+
+		return false;
+	}
+
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.CompareTag("Ladder"))
+		{
+			isClimbing = collider.bounds.Intersects(other.bounds) && !IsGrounded();
+		}
+	}
+
 	void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.CompareTag("Ladder"))
 		{
 			isOnLadder = false;
+			isClimbing = false;
 
 			// Enable gravity for player
 			rigidbody.gravityScale = 1f;
