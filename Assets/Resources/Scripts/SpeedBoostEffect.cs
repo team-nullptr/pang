@@ -11,14 +11,22 @@ public class SpeedBoostEffect : MonoBehaviour
 	/// <summary>
 	/// How long should the boost last.
 	/// </summary>
-	public float duration = 2f;
+	public float duration = 10f;
 
+	const string prefabPath = "Prefabs/SpeedBoostImage";
+	GameObject boostImage;
 	MovementManager movementManager;
 
     void Start()
     {
+		// Execute the boost
         movementManager = GetComponent<MovementManager>();
 		movementManager.speed *= boostFactor;
+
+		// Update UI
+		GameObject boostUI = GameObject.Find("BoostUI");
+		boostImage = Instantiate(Resources.Load(prefabPath)) as GameObject;
+		boostImage.transform.SetParent(boostUI.transform);
     }
 
     void Update()
@@ -30,6 +38,7 @@ public class SpeedBoostEffect : MonoBehaviour
 		else
 		{
 			movementManager.speed /= boostFactor;
+			Destroy(boostImage);
 			Destroy(this);
 		}
     }

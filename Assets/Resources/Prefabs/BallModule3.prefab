@@ -117,6 +117,8 @@ MonoBehaviour:
   boosts:
   - {fileID: 0}
   - {fileID: 6897223555740864435, guid: 2b732686ed576d0468fc925199bb3d60, type: 3}
+  - {fileID: 1575593058231227164, guid: 402940d40d609804ab844868252e8ee6, type: 3}
   boostProbabilities:
   - 0.8
-  - 0.2
+  - 0.1
+  - 0.1
