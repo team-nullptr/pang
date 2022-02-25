@@ -57,7 +57,14 @@ public class TerrainSaveable : Saveable
 	{
 		// Find tilemap.
 		GameObject terrain = GameObject.FindWithTag("Terrain");
+
+		if(terrain == null)
+			return;
+
 		Tilemap tilemap = terrain.GetComponent<Tilemap>();
+
+		if(tilemap == null)
+			return;
 
 		// Deserialize the data.
 		BinaryFormatter binaryFormatter = SaveManager.GetFormatter();

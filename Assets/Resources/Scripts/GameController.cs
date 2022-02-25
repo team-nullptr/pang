@@ -74,6 +74,11 @@ public class GameController : MonoBehaviour
 	void Awake() {
 		// Get the points manager
 		pointsManager = GetComponent<PointsManager>();
+
+		// Get the menu manager
+		GameObject menuManagerObject = GameObject.Find("MenuManager");
+		if(menuManagerObject != null)
+			menuManager = menuManagerObject.GetComponent<MenuManager>();
 	}
 
 	void Start()
@@ -90,11 +95,6 @@ public class GameController : MonoBehaviour
 
 		if (player != null)
 			playerManager = player.GetComponent<PlayerManager>();
-
-		// Get the menu manager
-		GameObject menuManagerObject = GameObject.Find("MenuManager");
-		if(menuManagerObject != null)
-			menuManager = menuManagerObject.GetComponent<MenuManager>();
 
 		// Start a countdown
 		if(!gameOver)
