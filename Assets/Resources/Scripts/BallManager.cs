@@ -152,6 +152,9 @@ public class BallManager : MonoBehaviour
 		// Destroy the ball
 		Destroy(gameObject);
 		destroyed = true;
+
+		// Broadcast the event to other scripts
+		BroadcastMessage("OnBreak");
 	}
 
 	public BallMovement GetBallMovement()

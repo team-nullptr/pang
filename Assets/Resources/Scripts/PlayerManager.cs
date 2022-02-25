@@ -113,7 +113,10 @@ public class PlayerManager : MonoBehaviour
 		gameController.Lose();
 	}
 
-	void UpdateHpUI() {
+	/// <summary>
+	/// Updates the HP UI.
+	/// </summary>
+	public void UpdateHpUI() {
 		if(hpUI == null)
 			return;
 		

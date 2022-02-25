@@ -9,6 +9,7 @@ TagManager:
   - BulletTrail
   - Ladder
   - Terrain
+  - Boost
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - Bullet
   - Bullet3
-  - 
+  - Boosts
   - 
   - 
   - 
