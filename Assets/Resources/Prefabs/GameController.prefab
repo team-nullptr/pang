@@ -2632,7 +2632,7 @@ GameObject:
   - component: {fileID: 5547481962959459764}
   - component: {fileID: 793369687451260197}
   m_Layer: 5
-  m_Name: Hp
+  m_Name: HpUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2869,6 +2869,7 @@ MonoBehaviour:
   - {fileID: 6896833341354211491}
   - {fileID: 6600210869824261072}
   - {fileID: 143242469853222422}
+  currentMenu: {fileID: 0}
   easyLevels: []
   mediumLevels: []
   hardLevels: []

@@ -160,10 +160,9 @@ public class GameController : MonoBehaviour
 		if (gameOver)
 			return;
 
-		if (winMenu != null) {
-			// Enable the win menu
-			winMenu.SetActive(true);
-		}
+		// Enable the win menu
+		if (winMenu != null)
+			menuManager.EnableMenu(winMenu);
 
 		// Update the points info
 		if(pointsManager != null) {
@@ -198,7 +197,7 @@ public class GameController : MonoBehaviour
 			return;
 
 		if (loseMenu != null)
-			loseMenu.SetActive(true);
+			menuManager.EnableMenu(loseMenu);
 
 		Pause();
 
@@ -256,7 +255,7 @@ public class GameController : MonoBehaviour
 		// If the game is not paused, pause it
 		Pause();
 
-		pauseMenu.SetActive(true);
+		menuManager.EnableMenu(pauseMenu);
 	}
 
 	public enum GameResult

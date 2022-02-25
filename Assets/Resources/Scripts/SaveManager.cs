@@ -171,6 +171,19 @@ public static class SaveManager
 			saveable.OnLoad();
 		}
 	}
+
+	/// <summary>
+	/// Deletes the save file.
+	/// </summary>
+	/// <param name="filename">The name of the save file to be deleted.</param>
+	public static void Delete(string filename) {
+		string path = GetSaveDirectory() + filename;
+
+		if (!File.Exists(path))
+			return;
+		
+		File.Delete(path);
+	}
 	
 	/// <summary>
 	/// Gets the formatter used for saving progress.

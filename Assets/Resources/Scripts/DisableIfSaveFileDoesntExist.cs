@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadButton : MonoBehaviour
+public class DisableIfSaveFileDoesntExist : MonoBehaviour
 {
 	/// <summary>
 	/// The name of the save file that the button loads.
@@ -12,14 +12,19 @@ public class LoadButton : MonoBehaviour
 	public string slot = "slot1";
 
 	Button button;
+	string path;
 
     void Start()
     {
+		// Get the button component.
         button = GetComponent<Button>();
-		string path = SaveManager.GetSaveDirectory() + slot;
 
-		if (!File.Exists(path)) {
-			button.interactable = false;
-		}
+		// Get the full path to the save file.
+		path = SaveManager.GetSaveDirectory() + slot;
     }
+
+	void Update() {
+		// Make the button interactable only if the save file exists.
+		button.interactable = File.Exists(path);
+	}
 }

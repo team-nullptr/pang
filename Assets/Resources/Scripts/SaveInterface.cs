@@ -13,4 +13,9 @@ public class SaveInterface : MonoBehaviour
 	{
 		SaveManager.Load(filename);
 	}
+
+	public void Delete(string filename)
+	{
+		SaveManager.Delete(filename);
+	}
 }

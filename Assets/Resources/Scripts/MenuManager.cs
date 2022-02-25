@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
 	/// <summary>
-	/// All the menus in the scene.
+	/// The menu that is currently active.
 	/// </summary>
-	public GameObject[] menus;
+	public GameObject currentMenu;
 	/// <summary>
 	/// Easy levels.
 	/// </summary>
@@ -25,24 +25,32 @@ public class MenuManager : MonoBehaviour
 
 	public void EnableMenu(GameObject menu)
 	{
-		foreach (GameObject _menu in menus)
-		{
-			if (_menu == menu)
-			{
-				_menu.SetActive(true);
-			}
-			else
-			{
-				_menu.SetActive(false);
-			}
-		}
+		if(currentMenu != null)
+			currentMenu.SetActive(false);
+		
+		menu.SetActive(true);
+
+		currentMenu = menu;
+		// foreach (GameObject _menu in menus)
+		// {
+		// 	if (_menu == menu)
+		// 	{
+		// 		Debug.Log("Enabling menu: " + menu.name);
+		// 		_menu.SetActive(true);
+		// 	}
+		// 	else
+		// 	{
+		// 		_menu.SetActive(false);
+		// 	}
+		// }
 	}
 
 	public void CloseAllMenus() {
-		foreach (GameObject _menu in menus)
-		{
-			_menu.SetActive(false);
-		}
+		currentMenu.SetActive(false);
+		// foreach (GameObject _menu in menus)
+		// {
+		// 	_menu.SetActive(false);
+		// }
 	}
 
 	public void QuitGame()
