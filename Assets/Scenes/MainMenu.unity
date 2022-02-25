@@ -339,8 +339,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 595910643}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+      - m_Target: {fileID: 595910644}
+        m_TargetAssemblyTypeName: Module1LevelManager, Assembly-CSharp
         m_MethodName: LoadMediumLevel
         m_Mode: 1
         m_Arguments:
@@ -3235,8 +3235,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 595910643}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+      - m_Target: {fileID: 595910644}
+        m_TargetAssemblyTypeName: Module1LevelManager, Assembly-CSharp
         m_MethodName: LoadHardLevel
         m_Mode: 1
         m_Arguments:
@@ -5170,6 +5170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 595910642}
   - component: {fileID: 595910643}
+  - component: {fileID: 595910644}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -5204,6 +5205,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMenu: {fileID: 681019348}
+  easyLevels:
+  - Level1
+  - Level2
+  - Level3
+  - Level4
+  - Level5
+  mediumLevels:
+  - Level6
+  - Level7
+  - Level8
+  - Level9
+  - Level10
+  hardLevels:
+  - Level11
+  - Level12
+  - Level13
+  - Level14
+  - Level15
+--- !u!114 &595910644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595910641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e34093e367094e47963bf2bb65eb63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   easyLevels:
   - Level1
   - Level2
@@ -18987,8 +19018,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 595910643}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+      - m_Target: {fileID: 595910644}
+        m_TargetAssemblyTypeName: Module1LevelManager, Assembly-CSharp
         m_MethodName: LoadEasyLevel
         m_Mode: 1
         m_Arguments:
