@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MovementManager : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class MovementManager : MonoBehaviour
 	Animator animator;
 	SpriteRenderer spriteRenderer;
 	Vector2 movement;
-	bool isOnLadder = false, isClimbing = false;
+	bool isOnLadder = false, isClimbing = false, onIce = false;
+	int iceDirection = 0;
 
 	void Awake()
 	{
@@ -52,11 +54,22 @@ public class MovementManager : MonoBehaviour
 		// Movement
 		float x = movement.x * speed;
 
+		// If the player is on ice, don't change the x velocity.
 		// If the player is on a ladder and presses the up button, climb up
 		rigidbody.velocity = new Vector2(
-			x,
+			onIce ? (iceDirection == 0 ? x : speed * iceDirection) : x,
 			isOnLadder ? movement.y * climbingSpeed : rigidbody.velocity.y
 		);
+
+		// Check which direction a player is moving on ice.
+		if(iceDirection == 0 && onIce && movement.x != 0)
+		{
+			iceDirection = (int)Mathf.Sign(movement.x);
+		}
+
+		// Reset the ice direction if the player is not on ice.
+		if(!onIce)
+			iceDirection = 0;
 
 		// Block the horizontal movement if you would run into a wall
 		if(x != 0) {
@@ -129,10 +142,42 @@ public class MovementManager : MonoBehaviour
 
 	void OnTriggerStay2D(Collider2D other)
 	{
+		// Check if the player is on a ladder
 		if (other.CompareTag("Ladder"))
 		{
 			isClimbing = collider.bounds.Intersects(other.bounds) && !IsGrounded();
 		}
+	}
+
+	void OnCollisionStay2D(Collision2D collision) {
+		// Check if the player is on ice
+		if(collision.gameObject.CompareTag("Terrain")) {
+			onIce = CheckIfOnIce(collision);
+
+			if(rigidbody.velocity.x > 0)
+				rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+		}
+	}
+
+	bool CheckIfOnIce(Collision2D collision) {
+		Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
+
+		if(tilemap == null)
+			return false;
+
+		foreach(ContactPoint2D contact in collision.contacts) {
+			Vector2 collisionPoint = contact.point - new Vector2(0f, 0.1f);
+
+			// Find the tile at the collision point
+			Vector3Int cell = tilemap.WorldToCell(collisionPoint);
+
+			TileBase tile = tilemap.GetTile(cell);
+
+			if(tile != null && tile.name == "IcedBricks")
+				return true;
+		}
+
+		return false;
 	}
 
 	void OnTriggerExit2D(Collider2D other)

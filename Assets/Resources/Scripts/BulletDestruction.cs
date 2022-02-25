@@ -44,7 +44,7 @@ public class BulletDestruction : MonoBehaviour
 		foreach(ContactPoint2D contact in collision.contacts) {
 			Vector3 collisionPoint = contact.point;
 
-			// If the bullet collides from the bottom, ignore it
+			// If the bullet collides from the bottom, ignore the collision
 			if(collisionPoint.y < transform.position.y)
 				return;
 
