@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 public class ScoreboardUpdate : MonoBehaviour
 {
+	/// <summary>
+	/// The name of the file in which the scoreboard data is stored.
+	/// </summary>
+	public string scoreboardFilename = "scoreboard.save";
+
     void Start()
     {
 		// Load the scoreboard data
-		Scoreboard scoreboard = Scoreboard.Load();
+		Scoreboard scoreboard = Scoreboard.Load(scoreboardFilename);
 
 		// If there is no scoreboard yet, create one and save it
 		if(scoreboard == null) {
 			scoreboard = Scoreboard.DefaultScoreboard();
 
-			scoreboard.Save();
+			scoreboard.Save(scoreboardFilename);
 		}
 		
         // Display the scoreboard

@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: slot2module3
       objectReference: {fileID: 0}
+    - target: {fileID: 1233092561346521689, guid: ea6d4a6ec05bf3d478ab631df8b2d191, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: WinMenuWithoutSavingScore
+      objectReference: {fileID: 0}
     - target: {fileID: 2345808560493011957, guid: ea6d4a6ec05bf3d478ab631df8b2d191, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: slot3module3

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class ScoreboardInput : MonoBehaviour
 {
 	/// <summary>
+	/// The name of the file in which the scoreboard data is stored.
+	/// </summary>
+	public string scoreboardFilename = "scoreboard.save";
+	/// <summary>
 	/// The input box for asking player's name.
 	/// </summary>
 	public InputField NameInputPrefab;
@@ -17,7 +21,7 @@ public class ScoreboardInput : MonoBehaviour
     void Start()
     {
 		// Load the scoreboard data
-		scoreboard = Scoreboard.Load();
+		scoreboard = Scoreboard.Load(scoreboardFilename);
 
 		// If there is no scoreboard yet, create one
 		if(scoreboard == null)
@@ -79,6 +83,6 @@ public class ScoreboardInput : MonoBehaviour
 			scoreboard.rows[playerRow].name = nameInput.text;
 
 		// Save the scoreboard
-		scoreboard.Save();
+		scoreboard.Save(scoreboardFilename);
 	}
 }
