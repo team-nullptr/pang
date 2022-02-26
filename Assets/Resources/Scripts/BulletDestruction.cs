@@ -42,11 +42,11 @@ public class BulletDestruction : MonoBehaviour
 			return;
 
 		foreach(ContactPoint2D contact in collision.contacts) {
-			Vector3 collisionPoint = contact.point;
-
 			// If the bullet collides from the bottom, ignore the collision
-			if(collisionPoint.y < transform.position.y)
+			if(contact.normal.y > -1f)
 				return;
+
+			Vector3 collisionPoint = contact.point;
 
 			// If the bullet collides with a breakable brick, break it
 			Tilemap tilemap = collision.gameObject.GetComponentInParent<Tilemap>();
