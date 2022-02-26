@@ -234,6 +234,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5927612476306446215, guid: 3419dbcdff5506e4d8e5cdde30df55e3, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c964b675151562345a5297564d821a5a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3419dbcdff5506e4d8e5cdde30df55e3, type: 3}
 --- !u!1001 &596752875
