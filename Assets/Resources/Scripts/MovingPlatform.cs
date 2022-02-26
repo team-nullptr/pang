@@ -12,11 +12,10 @@ public class MovingPlatform : MonoBehaviour
 	/// The points to which the platform will move.
 	/// </summary>
 	public GameObject[] waypoints;
-
 	/// <summary>
 	/// The current waypoint.
 	/// </summary>
-	int currentWaypoint = 0;
+	public int currentWaypoint = 0;
 
 	void Start() {
 		// Check if the platform has waypoints.
