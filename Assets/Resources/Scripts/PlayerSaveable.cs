@@ -19,6 +19,7 @@ public class PlayerSaveable : Saveable
 		public float invulnerabilityTimer;
 		public int iceDirection;
 		public SpeedBoostData[] speedBoosts;
+		public float DoubleBulletBoostEffectDuration;
 	}
 
     public override MemoryStream Save() {
@@ -42,6 +43,13 @@ public class PlayerSaveable : Saveable
 			data.speedBoosts[i] = new SpeedBoostData();
 			data.speedBoosts[i].boostFactor = speedBoostEffect.boostFactor;
 			data.speedBoosts[i].duration = speedBoostEffect.duration;
+		}
+
+		DoubleBulletBoostEffect doubleBulletBoostEffect = GetComponent<DoubleBulletBoostEffect>();
+		if(doubleBulletBoostEffect != null) {
+			data.DoubleBulletBoostEffectDuration = doubleBulletBoostEffect.duration;
+		} else {
+			data.DoubleBulletBoostEffectDuration = 0;
 		}
 
 		// Serialize the data.
@@ -81,6 +89,11 @@ public class PlayerSaveable : Saveable
 			SpeedBoostEffect speedBoostEffect = gameObject.AddComponent<SpeedBoostEffect>();
 			speedBoostEffect.boostFactor = speedBoostData.boostFactor;
 			speedBoostEffect.duration = speedBoostData.duration;
+		}
+
+		if(data.DoubleBulletBoostEffectDuration > 0) {
+			DoubleBulletBoostEffect doubleBulletBoostEffect = gameObject.AddComponent<DoubleBulletBoostEffect>();
+			doubleBulletBoostEffect.duration = data.DoubleBulletBoostEffectDuration;
 		}
 	}
 
