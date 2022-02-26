@@ -18,6 +18,14 @@ public class MovingPlatform : MonoBehaviour
 	/// </summary>
 	int currentWaypoint = 0;
 
+	void Start() {
+		// Check if the platform has waypoints.
+		if (waypoints.Length == 0) {
+			Debug.LogError("The platform has no waypoints.");
+			this.enabled = false;
+		}
+	}
+
 	void Update()
 	{
 		// Move the platform to the next waypoint.
