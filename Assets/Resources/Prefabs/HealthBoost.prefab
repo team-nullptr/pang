@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 6897223555740864439}
   - component: {fileID: 6897223555740864432}
   - component: {fileID: 6897223555740864433}
+  - component: {fileID: 8343156614799782137}
   m_Layer: 10
   m_Name: HealthBoost
   m_TagString: Boost
@@ -202,3 +203,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!114 &8343156614799782137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6897223555740864435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6fa4fe2784dc64d9a27c9f71daaa90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

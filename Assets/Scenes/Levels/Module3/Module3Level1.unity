@@ -2042,14 +2042,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 261105629, guid: 78e37a112a9a59149853516728463aba, type: 3}
-      propertyPath: boostProbabilities.Array.data[0]
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 261105629, guid: 78e37a112a9a59149853516728463aba, type: 3}
-      propertyPath: boostProbabilities.Array.data[1]
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2280107618669590938, guid: 78e37a112a9a59149853516728463aba, type: 3}
       propertyPath: m_Name
       value: Ball

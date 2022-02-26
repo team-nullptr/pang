@@ -13,9 +13,10 @@ public class BallSaveable : Saveable
 		public bool direction;
 		public float jumpAltitude;
 		public float xVelocity, yVelocity;
+		public string prefabPath;
 	}
 
-	const string prefabPath = "Prefabs/Ball";
+	public string prefabPath = "Prefabs/Ball";
 
     public override MemoryStream Save() {
 		BinaryFormatter binaryFormatter = SaveManager.GetFormatter();
@@ -33,6 +34,7 @@ public class BallSaveable : Saveable
 		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 		data.xVelocity = rigidbody2D.velocity.x;
 		data.yVelocity = rigidbody2D.velocity.y;
+		data.prefabPath = prefabPath;
 
 		// Serialize the data.
 		binaryFormatter.Serialize(memoryStream, data);
@@ -46,7 +48,7 @@ public class BallSaveable : Saveable
 		BallData data = (BallData)binaryFormatter.Deserialize(saveData);
 
 		// Instantiate the ball and fill in the data.
-		GameObject ball = Instantiate(Resources.Load(prefabPath)) as GameObject;
+		GameObject ball = Instantiate(Resources.Load(data.prefabPath)) as GameObject;
 		ball.transform.position = new Vector2(data.x, data.y);
 		BallManager ballManager = ball.GetComponent<BallManager>();
 		ballManager.layer = data.layer;

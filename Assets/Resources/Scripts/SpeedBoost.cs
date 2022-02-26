@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: Make saveable
 public class SpeedBoost : Boost
 {
 	/// <summary>

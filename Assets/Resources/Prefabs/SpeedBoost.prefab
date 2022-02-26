@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1575593058231227160}
   - component: {fileID: 1575593058231227167}
   - component: {fileID: 1575593058231227166}
+  - component: {fileID: 8862210624501299258}
   m_Layer: 10
   m_Name: SpeedBoost
   m_TagString: Boost
@@ -132,6 +133,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!114 &8862210624501299258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575593058231227164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6fa4fe2784dc64d9a27c9f71daaa90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabPath: Prefabs/SpeedBoost
 --- !u!1 &7449268942064184980
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,10 +7,18 @@ using UnityEngine;
 public class PlayerSaveable : Saveable
 {
 	[System.Serializable]
+	struct SpeedBoostData {
+		public float boostFactor;
+		public float duration;
+	}
+
+	[System.Serializable]
 	struct PlayerData {
 		public float x, y;
 		public int hp;
 		public float invulnerabilityTimer;
+		public int iceDirection;
+		public SpeedBoostData[] speedBoosts;
 	}
 
     public override MemoryStream Save() {
@@ -24,6 +32,17 @@ public class PlayerSaveable : Saveable
 		PlayerManager playerManager = GetComponent<PlayerManager>();
 		data.hp = playerManager.hp;
 		data.invulnerabilityTimer = playerManager.InvulnerabilityTimer;
+		MovementManager playerMovement = GetComponent<MovementManager>();
+		data.iceDirection = playerMovement.iceDirection;
+
+		SpeedBoostEffect[] speedBoostEffects = GetComponents<SpeedBoostEffect>();
+		data.speedBoosts = new SpeedBoostData[speedBoostEffects.Length];
+		for(int i = 0; i < speedBoostEffects.Length; i++) {
+			SpeedBoostEffect speedBoostEffect = speedBoostEffects[i];
+			data.speedBoosts[i] = new SpeedBoostData();
+			data.speedBoosts[i].boostFactor = speedBoostEffect.boostFactor;
+			data.speedBoosts[i].duration = speedBoostEffect.duration;
+		}
 
 		// Serialize the data.
 		binaryFormatter.Serialize(memoryStream, data);
@@ -53,6 +72,16 @@ public class PlayerSaveable : Saveable
 		PlayerManager playerManager = GetComponent<PlayerManager>();
 		playerManager.hp = data.hp;
 		playerManager.InvulnerabilityTimer = data.invulnerabilityTimer;
+
+		MovementManager playerMovement = GetComponent<MovementManager>();
+		playerMovement.iceDirection = data.iceDirection;
+		playerMovement.SetOnIce(data.iceDirection != 0);
+
+		foreach(SpeedBoostData speedBoostData in data.speedBoosts) {
+			SpeedBoostEffect speedBoostEffect = gameObject.AddComponent<SpeedBoostEffect>();
+			speedBoostEffect.boostFactor = speedBoostData.boostFactor;
+			speedBoostEffect.duration = speedBoostData.duration;
+		}
 	}
 
 	public override void OnLoad() {}

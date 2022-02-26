@@ -12,6 +12,7 @@ public class GameControllerSaveable : Saveable
 		public float timer;
 		public GameController.GameResult result;
 	}
+	
     public override MemoryStream Save()
 	{
 		BinaryFormatter binaryFormatter = SaveManager.GetFormatter();

@@ -13,6 +13,7 @@ public class MovementManager : MonoBehaviour
 	/// Player's velocity for climbing on ladder.
 	/// </summary>
 	public float climbingSpeed = 5f;
+	public int iceDirection = 0;
 
 	new Rigidbody2D rigidbody;
 	new CapsuleCollider2D collider;
@@ -21,7 +22,6 @@ public class MovementManager : MonoBehaviour
 	SpriteRenderer spriteRenderer;
 	Vector2 movement;
 	bool isOnLadder = false, isClimbing = false, onIce = false;
-	int iceDirection = 0;
 
 	void Awake()
 	{
@@ -154,7 +154,7 @@ public class MovementManager : MonoBehaviour
 		if(collision.gameObject.CompareTag("Terrain")) {
 			onIce = CheckIfOnIce(collision);
 
-			if(rigidbody.velocity.x > 0)
+			if(rigidbody.velocity.x != 0)
 				rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
 		}
 	}
@@ -206,5 +206,10 @@ public class MovementManager : MonoBehaviour
 	public bool IsOnLadder()
 	{
 		return isOnLadder;
+	}
+
+	public void SetOnIce(bool onIce)
+	{
+		this.onIce = onIce;
 	}
 }
