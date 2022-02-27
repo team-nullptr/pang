@@ -1018,8 +1018,71 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2035109936}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 278651385}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Save
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScoreboardInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285619470843390554, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+--- !u!114 &278651385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1273558886309726141, guid: ebe32455c72c1c241bc8358be14275be, type: 3}
+  m_PrefabInstance: {fileID: 278651384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8351fdf9c98db03478d6344a62ad43c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1206071091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,4 +1350,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5636b5b4c52a64eaf62656926164ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreboardFilename: scoreboard.save
   NameInputPrefab: {fileID: 7041118948398426151, guid: d0edcc542e7425642a59810d285e62bd, type: 3}
