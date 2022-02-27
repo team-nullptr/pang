@@ -86,4 +86,46 @@ public class BoostTest
 
 		yield return null;
 	}
+
+	[UnityTest]
+	public IEnumerator SpeedBoost() {
+		// Create a mock player
+		GameObject player = new GameObject();
+
+		PlayerManager playerManager = player.AddComponent<PlayerManager>();
+		player.AddComponent<CapsuleCollider2D>();
+
+		// Create a speed boost
+		GameObject boost = new GameObject();
+		SpeedBoost speedBoost = boost.AddComponent<SpeedBoost>();
+
+		// Execute the boost
+		speedBoost.ExecuteBoost(playerManager);
+
+		// Check if the player has a speed boost effect on him
+		Assert.AreNotEqual(player.GetComponent<SpeedBoostEffect>(), null);
+
+		yield return null;
+	}
+
+	[UnityTest]
+	public IEnumerator DoubleBulletBoost() {
+		// Create a mock player
+		GameObject player = new GameObject();
+
+		PlayerManager playerManager = player.AddComponent<PlayerManager>();
+		player.AddComponent<CapsuleCollider2D>();
+
+		// Create a double bullet boost
+		GameObject boost = new GameObject();
+		DoubleBulletBoost doubleBulletBoost = boost.AddComponent<DoubleBulletBoost>();
+
+		// Execute the boost
+		doubleBulletBoost.ExecuteBoost(playerManager);
+
+		// Check if the player has a double bullet boost effect on him
+		Assert.AreNotEqual(player.GetComponent<DoubleBulletBoostEffect>(), null);
+
+		yield return null;
+	}
 }
