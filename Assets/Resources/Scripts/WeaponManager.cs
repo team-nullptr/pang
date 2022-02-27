@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class WeaponManager : MonoBehaviour
 {
 	public Collider2D bulletPrefab;
@@ -16,7 +17,6 @@ public class WeaponManager : MonoBehaviour
 
 	AudioSource shotSound;
 	PlayerControls controls;
-	MovementManager movement;
 	Animator animator;
 
 	// INPUT
@@ -43,11 +43,10 @@ public class WeaponManager : MonoBehaviour
 
 	void Start()
 	{
-		// Get the player movement script
-		movement = GetComponent<MovementManager>();
-
 		// Get the bullet shot sound
-		shotSound = GameObject.Find("ShotSpeaker").GetComponent<AudioSource>();
+		GameObject speaker = GameObject.Find("ShotSpeaker");
+		if(speaker != null)
+			shotSound = speaker.GetComponent<AudioSource>();
 
 		// Get the player animator
 		animator = GetComponent<Animator>();
