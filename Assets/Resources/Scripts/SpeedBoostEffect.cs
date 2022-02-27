@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MovementManager))]
 public class SpeedBoostEffect : MonoBehaviour
 {
 	/// <summary>
@@ -25,8 +26,11 @@ public class SpeedBoostEffect : MonoBehaviour
 
 		// Update UI
 		GameObject boostUI = GameObject.Find("BoostUI");
-		boostImage = Instantiate(Resources.Load(prefabPath)) as GameObject;
-		boostImage.transform.SetParent(boostUI.transform);
+
+		if(boostUI != null) {
+			boostImage = Instantiate(Resources.Load(prefabPath)) as GameObject;
+			boostImage.transform.SetParent(boostUI.transform);
+		}
     }
 
     void Update()
