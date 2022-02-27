@@ -50,17 +50,25 @@ public class PlayerManager : MonoBehaviour
 	{
 		// Get the necessary handles
 		GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-		gameController = gameControllerObject.GetComponent<GameController>();
-		hitSound = GameObject.Find("HitSpeaker").GetComponent<AudioSource>();
+		if(gameControllerObject != null)
+			gameController = gameControllerObject.GetComponent<GameController>();
+
+		GameObject speaker = GameObject.Find("HitSpeaker");
+
+		if(speaker != null)
+			hitSound = speaker.GetComponent<AudioSource>();
+		
 		hpUI = GameObject.Find("HpUI");
 
 		// Update the HP UI
 		UpdateHpUI();
 
 		// Set the hit animation duration to the invulnerability time.
-		foreach (AnimationState state in hitAnimation)
-		{
-			state.speed = hitAnimation.clip.length / invulnerabilityTime;
+		if(hitAnimation != null) {
+			foreach (AnimationState state in hitAnimation)
+			{
+				state.speed = hitAnimation.clip.length / invulnerabilityTime;
+			}
 		}
 	}
 

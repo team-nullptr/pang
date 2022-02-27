@@ -63,4 +63,27 @@ public class BoostTest
 		// Check if the bullet count has been returned to original
 		Assert.AreEqual(originalBulletCount, weaponManager.maxBulletCount);
 	}
+
+	[UnityTest]
+	public IEnumerator HealthBoost() {
+		// Create a mock player
+		GameObject player = new GameObject();
+
+		PlayerManager playerManager = player.AddComponent<PlayerManager>();
+
+		// Save the original health
+		int originalHealth = playerManager.hp;
+
+		// Create a health boost
+		GameObject boost = new GameObject();
+		HealthBoost healthBoost = boost.AddComponent<HealthBoost>();
+
+		// Execute the boost
+		healthBoost.ExecuteBoost(playerManager);
+
+		// Check if the health has been increased
+		Assert.AreEqual(originalHealth + 1, playerManager.hp);
+
+		yield return null;
+	}
 }
