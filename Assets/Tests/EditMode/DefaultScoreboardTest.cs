@@ -2,9 +2,8 @@ using NUnit.Framework;
 
 public class DefaultScoreboardTest
 {
-    // A Test behaves as an ordinary method
     [Test]
-    public void DefaultScoreboardTestSimplePasses()
+    public void DefaultScoreboardValidity()
     {
 		// Get the default scoreboard
         Scoreboard scoreboard = Scoreboard.DefaultScoreboard();

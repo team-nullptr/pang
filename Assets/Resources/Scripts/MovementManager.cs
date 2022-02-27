@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class MovementManager : MonoBehaviour
 {
 	/// <summary>
@@ -16,7 +18,7 @@ public class MovementManager : MonoBehaviour
 	public int iceDirection = 0;
 
 	new Rigidbody2D rigidbody;
-	new CapsuleCollider2D collider;
+	new Collider2D collider;
 	PlayerControls controls;
 	Animator animator;
 	SpriteRenderer spriteRenderer;
@@ -44,7 +46,7 @@ public class MovementManager : MonoBehaviour
 	void Start()
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
-		collider = GetComponent<CapsuleCollider2D>();
+		collider = GetComponent<Collider2D>();
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
@@ -86,34 +88,43 @@ public class MovementManager : MonoBehaviour
 		}
 
 		// Limit player movenent to the screen borders
-		if (Camera.main.WorldToScreenPoint(transform.position - collider.bounds.extents).x < 0f)
-		{
-			transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x + collider.bounds.extents.x, transform.position.y, transform.position.z);
-		}
+		if(Camera.main != null) {
+			if (Camera.main.WorldToScreenPoint(transform.position - collider.bounds.extents).x < 0f)
+			{
+				transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x + collider.bounds.extents.x, transform.position.y, transform.position.z);
+			}
 
-		if (Camera.main.WorldToScreenPoint(transform.position + collider.bounds.extents).x > Screen.width)
-		{
-			transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - collider.bounds.extents.x, transform.position.y, transform.position.z);
+			if (Camera.main.WorldToScreenPoint(transform.position + collider.bounds.extents).x > Screen.width)
+			{
+				transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - collider.bounds.extents.x, transform.position.y, transform.position.z);
+			}
 		}
 
 		// Set animator values
-		if(movement.x != 0) {
-			animator.SetBool("walking", true);
+		if(animator != null) {
+			if(movement.x != 0) {
+				animator.SetBool("walking", true);
 
-			// Make player face the direction of movement
-			if(!GameState.paused)
-				spriteRenderer.flipX = movement.x < 0;
+				// Make player face the direction of movement
+				if(!GameState.paused)
+					spriteRenderer.flipX = movement.x < 0;
+			}
+			else
+				animator.SetBool("walking", false);
+
+			if(isClimbing) {
+				animator.SetBool("climbing", true);
+
+				animator.SetFloat("climbingPerformed", movement.y);
+			}
+			else
+				animator.SetBool("climbing", false);
 		}
-		else
-			animator.SetBool("walking", false);
+	}
 
-		if(isClimbing) {
-			animator.SetBool("climbing", true);
-
-			animator.SetFloat("climbingPerformed", movement.y);
-		}
-		else
-			animator.SetBool("climbing", false);
+	public void Move(Vector2 direction)
+	{
+		movement = direction;
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
