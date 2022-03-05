@@ -2,6 +2,13 @@
 
 Jest to nasza wersja gry Pang, stworzona w silniku Unity. Gra polega na niszczeniu skaczących piłek. Składa się z trzech modułów, zrealizowanych zgodnie ze specyfikacją.
 
+## Proces budowania aplikacji
+Do zbudowania aplikacji potrzebne jest środowisko Unity, dostępne przez platformę Unity Hub. Unity Hub jest dostępne do pobrania za darmo pod [tym adresem](https://unity.com/download) (należy nacisnąć przycisk "Download for Windows"). Następnie należy uruchomić instalator. Po zaakceptowaniu umowy licencyjnej można wybrać folder docelowy instalacji Unity Hub, a następnie wcisnąć przycisk "Zainstaluj". Po uruchomieniu Unity Hub należy wejść w zakładkę "Installs" po lewej stronie. W prawym gónym rogu pojawi się przycisk "Add". Po naciśnięciu na niego, program poprosi nas o wybranie wersji Unity, którą chcemy zainstalować. Wybieramy wersję Unity 2020.3.30f1, następnie naciskamy przycisk "Next". W następnym menu możemy odznaczyć wszystkie opcje poza "Windows Build Support (IL2CPP)" oraz wcisnąć przycisk "Done". Rozpocznie się instalacja Unity.
+
+Po zainstalowaniu Unity należy wrócić do zakładki "Projects" (po lewej stronie). W prawym górnym rogu znajduje się przycisk "Add". Po wciśnięciu go program poprosi nas o wybranie folderu. Podajemy folder, w którym znajduje się kod źródłowy Panga. Na liście projektów pojawi się nowy projekt o nazwie "pang". Otwieramy go przez kliknięcie.
+
+Po otwarciu projektu wchodzimy w menu "File" widoczne w lewym górnym rogu, a następnie wybieramy "Build And Run". Alternatywnie można zastosować skrót klawiszowy **Ctrl + B**. Podajemy folder, do któego ma zostać zbudowana aplikacja. Po zbudowaniu, aplikacja uruchomi sie automatycznie.
+
 ## Sterowanie
 
 Gra obsługuje wejście z klawiatury oraz kontrolera do gier.
