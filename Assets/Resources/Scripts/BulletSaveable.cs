@@ -45,8 +45,6 @@ public class BulletSaveable : Saveable
 		bulletObject.transform.position = new Vector3(data.x, data.y, 0);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
 		bullet.startingPoint = data.startingPoint;
-
-		// FIXME: A bullet sometimes moves a bit upwards or left when it is loaded.
 	}
 
 	public override void OnLoad() {

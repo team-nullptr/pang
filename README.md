@@ -15,6 +15,32 @@ Gra obsługuje wejście z klawiatury oraz kontrolera do gier.
 
 Sterowanie na padzie testowane było na kontolerze na konsolę Xbox 360, jednak powinno działać na dowolnym kontrolerze.
 
+## Piłki
+Celem gry jest zniszczenie wszystkich piłek na planszy. Piłki można zniszczyć trafiając w nie pociskami, niszczą się . Piłki odbijają się od podłogi i sufitu tak, aby zawsze osiągać stałą wysokość skoku. Odbijają się również od ścian, zachowując stałą prędkość w osi X (zmieniając jedynie kierunek ruchu). Każda piłka ma wewnętrzną zmienną *layer*. Od tej zmiennej zależy jej rozmiar, prędkość, wysokość skoku oraz ilość punktów, które gracz otrzyma za jej zniszczenie. Zmienia się również częstotliwość dźwięku odgrywanego przy zniszczeniu piłki. Czym wyższa jest ta zmienna, tym mniejszego rozmiaru jest piłka. Po zniszczeniu piłki, jeśli jej zmienna *layer* nie jest równa stałej *maxLayer* (równej dwa), stworzone zostają dwie nowe piłki poruszające się w przeciwnych kierunkach. Wartość ich zmiennych *layer* ustawiana jest na wartość o jeden wyższą od zmiennej *layer* zniszczonej piłki.
+
+## Bronie
+
+Na każdym z poziomów gracz ma przypisaną jedną z czterech broni. Poszczególne bronie różnią się jedynie maksymalną ilością pocisków, które mogą jednocześnie znajdować się na scenie oraz charakterystyką pocisku wystrzeliwanej z broni. Każdy z pocisków niszczy piłkę przy zderzeniu się z nią, jednocześnie samemu ulegając zniszczeniu. Gracz nie jest w stanie wystrzelić, gdy znajduje się w powietrzu lub wspina się po drabinie.
+
+### Domyślna broń  
+Z domyślnej broni gracz jest w stanie wystrzelić maksymalnie jeden pocisk jednocześnie. Pocisk ten porusza się wtedy pionowo do góry dopóki nie uderzy w przeszkodę bądź wyleci poza ekran (wtedy ulega zniszczeniu). Pocisk pozostawia za sobą "ślad", który również powoduje zniszczenie się piłki przy zderzeniu.
+
+### Broń druga
+Z tej broni gracz może wystrzelić maksymalnie pięć pocisków jednocześnie. Pociski są mniejsze i poruszają się szybciej niż w przypadku broni domyślnej. Nie pozostawiają za sobą również "śladu".
+
+### Broń trzecia
+Limit pocisków broni trzeciej wynosi jeden. Działa ona podobnie do broni domyślnej, jednak przenika przez przeszkody i ulega zniszczeniu jedynie przy wyleceniu poza ekran lub zderzeniu się z piłką.
+
+### Broń czwarta
+Z broni czwartej możliwym jest wystrzelenie trzech pocisków jednocześnie. Pocisk broni czwartej ma na sobie komponent fizyczny, więc odbija się od przeszkód oraz innych pocisków. Odbija się również od bocznych krawędzi poziomu. Przy uderzeniu w przeszkodę od dołu, niszczy się. Pocisk ulega autodestrukcji po pięciu sekundach.
+
+## Punkty
+W module drugim i trzecim, na końcu każdego poziomu, graczowi przyznawane są punkty. Gracz może zdobywać punkty w różne sposoby:
+ - za każdą zniszczoną pociskiem piłkę gracz uzyskuje określoną liczbę punktów (3000 punktów za największą piłkę, za każdą mniejszą piłkę - dwa razy mniej punktów niż za piłkę od niej większą)
+ - za każdy punkt życia poza jednym gracz zdobywa 500 punktów
+ - za każdą sekundę pozostałego czasu na ukończenie poziomu gracz zdobywa 500 punktów
+ - za zebranie artefaktu gracz zdobywa ustaloną liczbę punktów (zależną od poziomu)
+
 ## Ulepszenia
 
 W module trzecim po zniszczeniu piłki istnieje szansa na wypadnięcie z niej ulepszenia.
@@ -28,7 +54,7 @@ Najprostszym z nich jest ulepszenie życia. Po zebraniu tego ulepszenia ilość 
 
 Ulepszenie prędkości gracza zwiększa prędkość gracza o 50%. Ulepszenie to pozostaje aktywne przez 10 sekund. Jeśli kilka ulepszeń prędkości będzie aktywnych jednocześnie, to ich działanie kumuluje się.
 
-Ulepszenie ilości pocisków dwukrotnie zwiększa maksymalną ilość pocisków, które może wystrzelić gracz. Ulepszenie to również działa przez 10 sekund. Jeśli gracz podniesie ulepszenie podczas jego działania, to nie kumuluje się ono, a jedynie resetuje czas działania efektu z powrotem do dziesięciu sekund.
+Ulepszenie ilości pocisków dwukrotnie zwiększa maksymalną ilość pocisków, które mogą jednocześnie znajdować się na scenie. Ulepszenie to również działa przez 10 sekund. Jeśli gracz podniesie ulepszenie podczas jego działania, to nie kumuluje się ono, a jedynie resetuje czas działania efektu z powrotem do dziesięciu sekund.
 
 ## Teren
 

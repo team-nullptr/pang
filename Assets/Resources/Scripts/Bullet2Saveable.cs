@@ -40,8 +40,6 @@ public class Bullet2Saveable : Saveable
 		// Reconstruct the object.
 		GameObject bulletObject = Instantiate(bulletPrefab);
 		bulletObject.transform.position = new Vector3(data.x, data.y, 0);
-
-		// FIXME: A bullet sometimes moves a bit upwards or left when it is loaded.
 	}
 
 	public override void OnLoad() {
