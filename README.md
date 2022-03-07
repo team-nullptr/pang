@@ -7,7 +7,7 @@ Do zbudowania aplikacji potrzebne jest środowisko Unity, dostępne przez platfo
 
 Po zainstalowaniu Unity należy wrócić do zakładki "Projects" (po lewej stronie). W prawym górnym rogu znajduje się przycisk "Add". Po wciśnięciu go program poprosi nas o wybranie folderu. Podajemy folder, w którym znajduje się kod źródłowy Panga. Na liście projektów pojawi się nowy projekt o nazwie "pang". Otwieramy go przez kliknięcie.
 
-Po otwarciu projektu wchodzimy w menu "File" widoczne w lewym górnym rogu, a następnie wybieramy "Build And Run". Alternatywnie można zastosować skrót klawiszowy **Ctrl + B**. Podajemy folder, do któego ma zostać zbudowana aplikacja. Po zbudowaniu, aplikacja uruchomi sie automatycznie.
+Po otwarciu projektu wchodzimy w menu "File" widoczne w lewym górnym rogu, a następnie wybieramy "Build And Run". Alternatywnie można zastosować skrót klawiszowy **Ctrl + B**. Podajemy folder, do którego ma zostać zbudowana aplikacja. Po zbudowaniu, aplikacja uruchomi sie automatycznie. Plik wykonywalny o nazwie "pang version 1.exe" znajdzie się w wybranym folderze.
 
 ## Sterowanie
 
