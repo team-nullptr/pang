@@ -56,7 +56,7 @@ public class TerrainSaveable : Saveable
 	public override void Load(MemoryStream stream)
 	{
 		// Find tilemap.
-		GameObject terrain = GameObject.FindWithTag("Terrain");
+		GameObject terrain = GameObject.Find("Tilemap");
 
 		if(terrain == null)
 			return;
